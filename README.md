@@ -1,4 +1,19 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# <span style="color:green">SDG Quiz</span>
+<span style="color:green">SDG</span> stands for Sustainable Development Goals. <span style="color:green">SDG Quiz</span> is a command line application that helps users take a quiz about the core elements of the UN SDGs. The UN Agenda 2030 is a comprehensive plan to ensure sustainable development by 2030. 
+
+Individuals will benefit from knowing how much they know the SDGs, as they can start to change their behavior to reduce their carbon footprints. 
+Researchers may also want to give their subjects this quiz along with other survey questions to collect data about awareness. 
+
+## User goals
+
+## Owner goals
+
+
+
+
+#
+
+
 
 Welcome Amare Teklay Hailu,
 

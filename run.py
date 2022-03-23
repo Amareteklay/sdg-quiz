@@ -54,6 +54,7 @@ def validate_answer(ans):
         print(ans.lower())
         print('You answer should be one of: a, b, c or d')
         ans = input('Try again.\n')
+    return ans
 
 
 def evaluate_answer(qsn, ans):
