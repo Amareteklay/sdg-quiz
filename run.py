@@ -7,12 +7,19 @@ print('Welcome')
 print('SDG Quiz')
 
 name = input('Enter your name:\n')
-
-print(f'Your name is: {name}')
+print(f'Hello: {name}!')
 
 # Create a list of question dictionaries.
-qsns = questionBank()
+qsns = questionBank() 
 score = 0
+
+def update_score():
+    """ 
+    Increment score if the answer is correct
+    """
+    global score
+    score += 1
+    return score
 
 def check_answer(qsn, ans):
     """
@@ -22,19 +29,21 @@ def check_answer(qsn, ans):
     """
     if ans == qsns[qsn]['answer']:
         print('Correct! Well done.')
-        score += 1
+        update_score()
     else:
         print('Incorrect')
-        score += 0
-    return score
+    print(score)
+
+def take_quiz():
+    """
+    Start the quiz. Get answer, give feedback and show next question.
+    """
+    for i in range(len(qsns)):
+        print(qsns[i]['question'])
+        print(qsns[i]['options'])
+        ans = input('You answer:\n')
+        check_answer(i, ans)
+    print(f'You have answered {score} questions out of {len(qsns)}.')
 
 
-for i in range(len(qsns)):
-    print(qsns[i]['question'])
-    print(qsns[i]['options'])
-    ans = input('You answer:\n')
-    check_answer(i, ans)
-print(answer)
-
-
-
+take_quiz()
