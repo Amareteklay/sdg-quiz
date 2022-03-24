@@ -8,21 +8,40 @@ qsns = questionBank()
 score = 0
 
 
-
-class Qn:
+class Question:
     """
     Blueprint of questions.
     Takes a list of dictionaries and displays questions and choices.
     """
-    def __init__(self, d):
-        self.question = d['question']
-        self.choice_a = d['choices']['A']
-        self.choice_b = d['choices']['B']
-        self.choice_c = d['choices']['C']
-        self.choice_d = d['choices']['D']
-        self.answer = d['answer']
+    def __init__(self, dict_list):
+        """"
+        Initialize a question object
+        """
+        self.question = dict_list['question']
+        self.choice_a = dict_list['choices']['A']
+        self.choice_b = dict_list['choices']['B']
+        self.choice_c = dict_list['choices']['C']
+        self.choice_d = dict_list['choices']['D']
+        self.answer = dict_list['answer']
         self.user_answer = self.get_answer()
+
+
+    def ask_question(self):
+        """
+        Display question prompt and choices
+        """
+        print(self.question, '\n')
+        print('A.', self.choice_a, '\n')
+        print('B.', self.choice_b, '\n')
+        print('C.', self.choice_c, '\n')
+        print('D.', self.choice_d, '\n')
+
+
     def get_answer(self):
+        """
+        Get answer as user input
+        """
+        self.ask_question()
         self.user_answer = input('Enter your answer.\n')
         return self.user_answer
 
@@ -36,78 +55,61 @@ class User:
         Get username to initialize name
         """
         self.name = input('Enter your name:\n')
-    def quiz(self):
-        self.qqn = Qn(qsns[0])
-        print(f'Your answer is: {self.qqn.user_answer}')
-        print(f'The correct answer is: {self.qqn.answer}')
+        self.score = 0
+        self.given_answer = ''
 
 
-def get_user():
-    """
-    Create an instance of the user class.
-    """
-    user = User()
-    return user
+    def show_question(self, question_index):
+        self.question_object = Question(qsns[question_index])
+        self.given_answer = self.question_object.user_answer
+        return self.given_answer
+
+    def update_score(self):
+        """
+        Increment score if the answer is correct
+        """
+        self.score += 1
+        return self.score
 
 
-def update_score():
-    """
-    Increment score if the answer is correct
-    """
-    global score
-    score += 1
-    return score
+    def validate_answer(self, given_answer):
+        """
+        Get answer from user and validate.
+        Input answer can only be one of a, b, c or d.
+        Change input to lower case and look it up in the list.
+        """
+        if given_answer.lower() not in ['a', 'b', 'c', 'd']:
+            print(given_answer.lower())
+            print('You answer should be one of: a, b, c or d')
+            self.given_answer = input('Try again.\n')
+        return self.given_answer
 
 
-def show_question(i):
-    """
-    Display question prompt and choices.
-    """
-    print(qsns[i]['question'])
-    print(qsns[i]['choices'])
-
-
-def validate_answer(ans):
-    """
-    Get answer from user and validate.
-    Input answer can only be one of a, b, c or d.
-    Change input to lower case and look it up in the list.
-    """
-    if ans.lower() not in ['a', 'b', 'c', 'd']:
-        print(ans.lower())
-        print('You answer should be one of: a, b, c or d')
-        ans = input('Try again.\n')
-    return ans
-
-
-def evaluate_answer(qsn, ans):
-    """
-    Get the current question number and the current answer.
-    Compare it with corrent answer for the given question.
-    Display feedback and if answer is correct, increment score.
-    """
-    if ans.upper() == qsns[qsn]['answer']:
-        print('Correct! Well done.')
-        update_score()
-    else:
-        print('Incorrect')
-    print(score)
+    def evaluate_answer(self, qsn, given_answer):
+        """
+        Get the current question number and the current answer.
+        Compare it with corrent answer for the given question.
+        Display feedback and if answer is correct, increment score.
+        """
+        if given_answer.upper() == qsns[qsn]['answer']:
+            print('Correct! Well done.')
+            self.update_score()
+        else:
+            print('Incorrect')
+        print(self.score)
 
 
 def take_quiz():
     """
     Start the quiz. Get answer, give feedback and show next question.
     """
-    get_user()
+    #Create an instance of the user class.
+    user = User()
     for i in range(3):
-        show_question(i)
-        ans = input('You answer:\n')
-        validate_answer(ans)
-        evaluate_answer(i, ans)
-    print(f'You have answered {score} questions out of {len(qsns)}.')
-    print('From the classes')
-    user1 = User()
-    user1.quiz()
+        user.show_question(i)
+        user.validate_answer(user.given_answer)
+        user.evaluate_answer(i, user.given_answer)
+    print(f'You have answered {user.score} questions out of {len(qsns)}.')
 
 
 take_quiz()
