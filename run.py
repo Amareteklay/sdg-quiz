@@ -1,8 +1,17 @@
+import os
+import time
 from termcolor import colored
 from questions import questionBank
 
 print(colored('Welcome', 'green'))
 print('SDG Quiz')
+print(colored('''
+               _____   ________
+              //       ||     \\
+              \\____    ||      \\
+                   ||  ||      /
+              _____//  ||_____/
+                ''', 'green'))
 
 # Create a list of question dictionaries.
 qsns = questionBank()
@@ -96,7 +105,9 @@ class User:
             self.update_score()
         else:
             print(colored('Incorrect', 'red'))
-        print(self.score)
+        print(f'Your score: {self.score}')
+        time.sleep(3)
+        os.system("clear")
 
 
 def take_quiz():
