@@ -1,17 +1,17 @@
 import os
 import time
 from termcolor import colored
+from art import *
 from questions import questionBank
 
-print(colored('Welcome', 'green'))
-print('SDG Quiz')
-print(colored('''
-               _____   ________
-              //       ||     \\
-              \\____    ||      \\
-                   ||  ||      /
-              _____//  ||_____/
-                ''', 'green'))
+sdg_art = text2art("SDG-Quiz")
+print(colored(sdg_art, 'green'))
+print(colored(f'''
+            ::::::: WELCOME :::::::::: 
+            ||        to            ||
+            ||      SDG-Quiz        ||
+            ::::::::::::::::::::::::::
+            ''', 'yellow'))
 
 # Create a list of question dictionaries.
 qsns = questionBank()
@@ -106,7 +106,7 @@ class User:
         else:
             print(colored('Incorrect', 'red'))
         print(f'Your score: {self.score}')
-        time.sleep(3)
+        time.sleep(0)
         os.system("clear")
 
 
@@ -116,7 +116,7 @@ def take_quiz():
     """
     # Create an instance of the user class.
     user = User()
-    for i in range(3):
+    for i in range(2):
         user.show_question(i)
         user.validate_answer()
         user.evaluate_answer(i, user.given_answer)
