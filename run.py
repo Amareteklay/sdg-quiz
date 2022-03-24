@@ -8,15 +8,38 @@ qsns = questionBank()
 score = 0
 
 
+
+class Qn:
+    """
+    Blueprint of questions.
+    Takes a list of dictionaries and displays questions and choices.
+    """
+    def __init__(self, d):
+        self.question = d['question']
+        self.choice_a = d['choices']['A']
+        self.choice_b = d['choices']['B']
+        self.choice_c = d['choices']['C']
+        self.choice_d = d['choices']['D']
+        self.answer = d['answer']
+        self.user_answer = self.get_answer()
+    def get_answer(self):
+        self.user_answer = input('Enter your answer.\n')
+        return self.user_answer
+
+
 class User:
     """"
     Defines users
     """
     def __init__(self):
         """
-        Get username to initialize name 
+        Get username to initialize name
         """
         self.name = input('Enter your name:\n')
+    def quiz(self):
+        self.qqn = Qn(qsns[0])
+        print(f'Your answer is: {self.qqn.user_answer}')
+        print(f'The correct answer is: {self.qqn.answer}')
 
 
 def get_user():
@@ -41,7 +64,7 @@ def show_question(i):
     Display question prompt and choices.
     """
     print(qsns[i]['question'])
-    print(qsns[i]['options'])
+    print(qsns[i]['choices'])
 
 
 def validate_answer(ans):
@@ -76,12 +99,15 @@ def take_quiz():
     Start the quiz. Get answer, give feedback and show next question.
     """
     get_user()
-    for i in range(len(qsns)):
+    for i in range(3):
         show_question(i)
         ans = input('You answer:\n')
         validate_answer(ans)
         evaluate_answer(i, ans)
     print(f'You have answered {score} questions out of {len(qsns)}.')
+    print('From the classes')
+    user1 = User()
+    user1.quiz()
 
 
 take_quiz()
