@@ -34,8 +34,6 @@ print(colored(f'''
 # Create a list of question dictionaries.
 qsns = questionBank()
 score = 0
-participants = []
-participant = {}
 
 class Question:
     """
@@ -144,39 +142,59 @@ class User:
         time.sleep(0)
         os.system("clear")
 
+
 def start_quiz():
+    """
+    Check if user is ready.
+    Create instance of user class.
+    """
     is_ready = input("Ready to start? Press 'y' or 'n' " )
     if is_ready.lower() != 'y':
         is_ready = input("You need to enter 'y' or 'n' ")
     # Create an instance of the user class.
     user = User()
-    user.id = len(participants) + 1
-    participant['id'] = user.id
-    participant['name'] = user.name
-    participant['answers'] = []
-    participants.append(participant)
     return user
+
+
+def add_new_data(user):
+    """
+    Add new record to google sheet
+    """
+    new_data = [user.name, user.score] + user.answers
+    users.append_row(new_data)
+
+def rank_score():
+    """
+    Get updated data
+    Calculate and display descriptive statistics of score
+    """
+    scores = [int(item) for item in users.col_values(2)[1:]]
+    print(f'The average score is: {st.mean(scores)}')
+    print(f'The median score is: {st.median(scores)}')
+    print(f'The highest score is: {max(scores)}')
+
+def end_quiz(user):
+    """
+    Show own and others' score
+    """
+    add_new_data(user)
+    rank_score()
+    print(f'You have answered {user.score} questions out of {len(qsns)}.')
+
 
 def main():
     """
     Start the quiz. Get answer, give feedback and show next question.
     """
     user = start_quiz()
-    for i in range(5):
+    user.answers = []
+    for i in range(10):
         user.show_question(i)
         user.validate_answer()
-        participant['answers'].append(user.given_answer)
+        user.answers.append(user.given_answer)
         user.evaluate_answer(i, user.given_answer)
-    new_data = [user.name, user.id, user.score]
-    participant['score'] = user.score
-    users.append_row(new_data)
-    users_data = users.get_all_values()
-    print(users_data)
-    scores = [int(item) for item in users.col_values(3)[1:]]
-    print(st.mean(scores))
-    print(st.median(scores))
-    print(max(scores))
-    print(f'You have answered {user.score} questions out of {len(qsns)}.')
+
+    end_quiz(user)
 
 
 main()
