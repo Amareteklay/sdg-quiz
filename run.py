@@ -16,7 +16,8 @@ print(colored(f'''
 # Create a list of question dictionaries.
 qsns = questionBank()
 score = 0
-
+participants = []
+participant = {}
 
 class Question:
     """
@@ -73,8 +74,8 @@ class User:
         """
         self.name = input('Enter your name.\n')
         while True:
-            if len(self.name)<=2:
-                print('Name too short. It should be at least 3 characters.\n')
+            if len(self.name)<=1:
+                print('Name should be at least 2 characters.\n')
                 self.name = input('Please enter a valid name.\n')
             elif len(self.name)>20:
                 print('Name may not be more than 20 characters.\n')
@@ -131,6 +132,11 @@ def start_quiz():
         is_ready = input("You need to enter 'y' or 'n' ")
     # Create an instance of the user class.
     user = User()
+    user.id = len(participants) + 1
+    participant['id'] = user.id
+    participant['name'] = user.name
+    participant['answers'] = []
+    participants.append(participant)
     return user
 
 def take_quiz():
@@ -141,7 +147,10 @@ def take_quiz():
     for i in range(2):
         user.show_question(i)
         user.validate_answer()
+        participant['answers'].append(user.given_answer)
         user.evaluate_answer(i, user.given_answer)
+    participant['score'] = user.score
+    print(participants)
     print(f'You have answered {user.score} questions out of {len(qsns)}.')
 
 
