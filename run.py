@@ -1,8 +1,26 @@
 import os
 import time
+import statistics as st
+import gspread
+from google.oauth2.service_account import Credentials
 from termcolor import colored
 from art import *
 from questions import questionBank
+
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT =gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open('sdg_quiz')
+
+users = SHEET.worksheet('users')
 
 sdg_art = text2art("SDG-Quiz")
 print(colored(sdg_art, 'green'))
@@ -139,19 +157,26 @@ def start_quiz():
     participants.append(participant)
     return user
 
-def take_quiz():
+def main():
     """
     Start the quiz. Get answer, give feedback and show next question.
     """
     user = start_quiz()
-    for i in range(2):
+    for i in range(5):
         user.show_question(i)
         user.validate_answer()
         participant['answers'].append(user.given_answer)
         user.evaluate_answer(i, user.given_answer)
+    new_data = [user.name, user.id, user.score]
     participant['score'] = user.score
-    print(participants)
+    users.append_row(new_data)
+    users_data = users.get_all_values()
+    print(users_data)
+    scores = [int(item) for item in users.col_values(3)[1:]]
+    print(st.mean(scores))
+    print(st.median(scores))
+    print(max(scores))
     print(f'You have answered {user.score} questions out of {len(qsns)}.')
 
 
-take_quiz()
+main()
