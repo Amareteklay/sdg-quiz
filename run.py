@@ -63,9 +63,25 @@ class User:
         """
         Get username to initialize name
         """
-        self.name = input('Enter your name:\n')
+        self.name = self.get_name()
         self.score = 0
         self.given_answer = ''
+
+    def get_name(self):
+        """
+        Accept user input and validate it.
+        """
+        self.name = input('Enter your name.\n')
+        while True:
+            if len(self.name)<=2:
+                print('Name too short. It should be at least 3 characters.\n')
+                self.name = input('Please enter a valid name.\n')
+            elif len(self.name)>20:
+                print('Name may not be more than 20 characters.\n')
+                self.name = input('Please enter a valid name.\n')
+            else:
+                break
+        return self.name
 
     def show_question(self, question_index):
         """
@@ -109,13 +125,19 @@ class User:
         time.sleep(0)
         os.system("clear")
 
+def start_quiz():
+    is_ready = input("Ready to start? Press 'y' or 'n' " )
+    if is_ready.lower() != 'y':
+        is_ready = input("You need to enter 'y' or 'n' ")
+    # Create an instance of the user class.
+    user = User()
+    return user
 
 def take_quiz():
     """
     Start the quiz. Get answer, give feedback and show next question.
     """
-    # Create an instance of the user class.
-    user = User()
+    user = start_quiz()
     for i in range(2):
         user.show_question(i)
         user.validate_answer()
