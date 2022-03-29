@@ -1,6 +1,7 @@
 import os
 import time
 import statistics as st
+from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
 from termcolor import colored
@@ -21,6 +22,7 @@ GSPREAD_CLIENT =gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('sdg_quiz')
 
 users = SHEET.worksheet('users')
+answers = SHEET.worksheet('answers')
 
 # Create a list of question dictionaries.
 qsns = questionBank()
@@ -79,6 +81,8 @@ class User:
         """
         Accept user input and validate it.
         """
+        os.system("clear")
+        print(colored('...................................', 'yellow'))
         self.name = input('Enter your name.\n')
         while True:
             if len(self.name)<=1:
@@ -163,16 +167,22 @@ def display_instructions():
 
 def display_score_board():
     print('Fetching the highest 5 scores...\n')
-    time.sleep(2)
-    top_five = [int(item) for item in users.col_values(2)[1:]]
-    top_five.sort(reverse=True)
-    print(top_five[:5]) 
+    data = users.get_all_values()
+    print(tabulate(data[0:5], headers='firstrow', tablefmt='fancy_grid'))
+    time.sleep(3)
+    will_play = input('Do you want to take the quiz? (Enter y or n) \n')
+    if will_play.lower() == 'y':
+        display_instructions()
+    else:
+        print('Thank you for showing interest. \n Goodbye!')
 
 def sdg_note():
     print('''
     The Sustainable Development Goals (SDGs), also known as the Global Goals, 
     were adopted by the United Nations in 2015 as a universal call to action to end poverty, 
-    protect the planet, and ensure that by 2030 all people enjoy peace and prosperity.
+    protect the planet, and ensure that by 2030 all people enjoy peace and prosperity.\n
+    The 17 SDGs are integrated—they recognize that action in one area will affect outcomes in others, 
+    and that development must balance social, economic and environmental sustainability.
     ''')
 
 
@@ -195,7 +205,9 @@ def main_menu():
     elif int(menu_choice) == 3:
         sdg_note()
     elif int(menu_choice) == 4:
-        pass
+        print('Goodbye!')
+        time.sleep(2)
+        exit()
     else:
         print('Invalid input.\n')
         return main_menu()
@@ -205,8 +217,11 @@ def add_new_data(user):
     """
     Add new record to google sheet
     """
-    new_data = [user.name, user.score] + user.answers
+    new_answers = [user.name] + user.answers
+    answers.append_row(new_answers)
+    new_data = [user.name, user.score]
     users.append_row(new_data)
+    users.sort((2, 'des'),)
 
 def rank_score():
     """

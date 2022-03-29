@@ -17,6 +17,9 @@ Researchers may also want to give their subjects this quiz along with other surv
 - Lucid chart
 - Google sheets
 
+- Description of SDGs was copied from [this page](https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=Cj0KCQjw3IqSBhCoARIsAMBkTb3nuP_n4d0SmgyXs19VU0vFHfZphewUCOk3J0hHHeh8Gv17Xt6I1g4aAk-fEALw_wcB)
+
+
 
 Welcome Amare Teklay Hailu,
 
