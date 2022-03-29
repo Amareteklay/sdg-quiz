@@ -22,15 +22,6 @@ SHEET = GSPREAD_CLIENT.open('sdg_quiz')
 
 users = SHEET.worksheet('users')
 
-sdg_art = text2art("SDG-Quiz")
-print(colored(sdg_art, 'green'))
-print(colored(f'''
-            ::::::: WELCOME :::::::::: 
-            ||        to            ||
-            ||      SDG-Quiz        ||
-            ::::::::::::::::::::::::::
-            ''', 'yellow'))
-
 # Create a list of question dictionaries.
 qsns = questionBank()
 score = 0
@@ -142,18 +133,72 @@ class User:
         time.sleep(0)
         os.system("clear")
 
+def welcome_board():
+    """
+    Display a Welcome message to the user
+    """
+    sdg_art = text2art("SDG-Quiz")
+    print(colored(f'::::::::::::::::::::::: WELCOME :::::::::::::::::::::', 'yellow'))
+    print(colored(f'                          TO               ', 'yellow'))                       
+    print(colored(f'{sdg_art}', 'green'))
+    print(colored(f':::::::::::::::::::::::::::::::::::::::::::::::::::::', 'yellow'))
+    time.sleep(2)
 
-def start_quiz():
+
+def display_instructions():
     """
-    Check if user is ready.
-    Create instance of user class.
+    Describes how to take the quiz
     """
-    is_ready = input("Ready to start? Press 'y' or 'n' " )
-    if is_ready.lower() != 'y':
-        is_ready = input("You need to enter 'y' or 'n' ")
-    # Create an instance of the user class.
-    user = User()
-    return user
+    print('General Intructions \n')
+    print('This quiz consists of 10 multiple choice questions.\n')
+    print('All questions are related to the Sustainable Development Goals (SDGs).\n')
+    print('You will answer each question by selecting a, b, c or d.\n')
+    print('You will be told if your answer is correct or not.\n')
+    print('You will see your total score after you answer the last question.\n')
+    print('Each correct answer is worth one point.\n')
+    print('Best of luck!')
+    time.sleep(1)
+    print("Now let's get started!")
+    time.sleep(1)
+
+def display_score_board():
+    print('Fetching the highest 5 scores...\n')
+    time.sleep(2)
+    top_five = [int(item) for item in users.col_values(2)[1:]]
+    top_five.sort(reverse=True)
+    print(top_five[:5]) 
+
+def sdg_note():
+    print('''
+    The Sustainable Development Goals (SDGs), also known as the Global Goals, 
+    were adopted by the United Nations in 2015 as a universal call to action to end poverty, 
+    protect the planet, and ensure that by 2030 all people enjoy peace and prosperity.
+    ''')
+
+
+def main_menu():
+    """
+    Display menu and redirect user to
+    start quiz or scoreboard or SDGs
+    """
+    print('Please choose one of the following.\n')
+    print('1. Start quiz\n')
+    print('2. Show highest scores\n')
+    print('3. Read about SDGs\n')
+    print('4. Quit\n')
+    menu_choice = input('Please write 1, 2, 3 or 4 and hit Enter.\n')
+
+    if int(menu_choice) == 1:
+        display_instructions()
+    elif int(menu_choice) == 2:
+        display_score_board()
+    elif int(menu_choice) == 3:
+        sdg_note()
+    elif int(menu_choice) == 4:
+        pass
+    else:
+        print('Invalid input.\n')
+        return main_menu()
 
 
 def add_new_data(user):
@@ -177,6 +222,7 @@ def end_quiz(user):
     """
     Show own and others' score
     """
+    print('Calculating your score...\n')
     add_new_data(user)
     rank_score()
     print(f'You have answered {user.score} questions out of {len(qsns)}.')
@@ -186,7 +232,9 @@ def main():
     """
     Start the quiz. Get answer, give feedback and show next question.
     """
-    user = start_quiz()
+    welcome_board()
+    main_menu()
+    user = User()
     user.answers = []
     for i in range(10):
         user.show_question(i)
