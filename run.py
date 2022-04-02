@@ -133,12 +133,12 @@ class User:
         Compare it with corrent answer for the given question.
         Display feedback and if answer is correct, increment score.
         """
+        print('\n')
         if given_answer.upper() == qsns[qsn]['answer']:
-            print(colored('Correct! Well done.', 'green'))
+            print(colored(f'Correct! Well done, {self.name}!', 'green'))
             self.update_score()
         else:
-            print(colored('Incorrect', 'red'))
-        print(f'Your score: {self.score}')
+            print(colored('That was incorrect.', 'red'))
         time.sleep(1)
         os.system("clear")
 
@@ -148,10 +148,11 @@ def welcome_board():
     Display a Welcome message to the user
     """
     sdg_art = text2art("SDG-Quiz")
-    print(colored(f''':::::::::::::::: WELCOME :::::::::::::::::''', 'yellow'))
-    print(colored(f'''                   TO             ''', 'yellow'))
+    print('\n')
+    print(colored(f'''::::::::::::::::::::: WELCOME :::::::::::::::::::::''', 'yellow'))
+    print(colored(f'''                       TO             ''', 'yellow'))
     print(colored(f'{sdg_art}', 'green'))
-    print(colored(f'''::::::::::::::::::::::::::::::::::::::::::''', 'yellow'))
+    print(colored(f''':::::::::::::::::::::::::::::::::::::::::::::::::::''', 'yellow'))
     time.sleep(2)
 
 
@@ -212,12 +213,13 @@ def main_menu():
     Display menu and redirect user to
     start quiz or scoreboard or SDGs
     """
+    print('\n')
     print('Please choose one of the following.\n')
-    print('1. Start quiz\n')
-    print('2. Show highest scores\n')
-    print('3. Read about SDGs\n')
-    print('4. Quit\n')
-    menu_choice = input('Please write 1, 2, 3 or 4 and hit Enter.\n')
+    print('   1. Start quiz\n')
+    print('   2. Show highest scores\n')
+    print('   3. Read about SDGs\n')
+    print('   4. Exit\n')
+    menu_choice = input('Type 1, 2, 3 or 4 and hit Enter.\n')
 
     if int(menu_choice) == 1:
         display_instructions()
@@ -282,8 +284,9 @@ def end_quiz(user):
         print(colored(f'Nice, {user.name}!', 'green'))
     rank_score()
     time.sleep(2)
-    print('Thank you for playing.\n')
-    next = input('''What do you want to do next?\n
+    print('\n')
+    print('Thank you for taking the quiz.\n')
+    next = input('''What do you want to do next?
 (Type P to play again or Q to quit.)\n''')
     if next.lower() == 'p':
         play(user)
