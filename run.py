@@ -74,16 +74,18 @@ class User:
         Get username to initialize name
         """
         self.name = self.get_name()
-        self.score = 0
+        self.score = None
         self.given_answer = ''
 
     def get_name(self):
         """
         Accept user input and validate it.
         """
-        os.system("clear")
         print(colored('...................................', 'yellow'))
         self.name = input('Enter your name.\n')
+        os.system('clear')
+        print(colored(f'Good luck, {self.name}!', 'yellow'))
+        print('...........................................\n')
         while True:
             if len(self.name)<=1:
                 print('Name should be at least 2 characters.\n')
@@ -134,7 +136,7 @@ class User:
         else:
             print(colored('Incorrect', 'red'))
         print(f'Your score: {self.score}')
-        time.sleep(0)
+        time.sleep(1)
         os.system("clear")
 
 def welcome_board():
@@ -153,17 +155,20 @@ def display_instructions():
     """
     Describes how to take the quiz
     """
-    print('General Intructions \n')
-    print('This quiz consists of 10 multiple choice questions.\n')
-    print('All questions are related to the Sustainable Development Goals (SDGs).\n')
-    print('You will answer each question by selecting a, b, c or d.\n')
-    print('You will be told if your answer is correct or not.\n')
-    print('You will see your total score after you answer the last question.\n')
-    print('Each correct answer is worth one point.\n')
-    print('Best of luck!')
-    time.sleep(1)
-    print("Now let's get started!")
-    time.sleep(1)
+    os.system('clear')
+    print(colored('::::::::::::::::::::::::::::::::', 'yellow'))
+    print(colored('::     General Intructions    ::', 'yellow'))
+    print(colored('::::::::::::::::::::::::::::::::\n', 'yellow'))
+    print('1. This quiz consists of 10 multiple choice questions.\n')
+    print('2. You will answer each question by selecting a, b, c or d.\n')
+    print('3. The program will tell you if your answer is correct or not.\n')
+    print('4. You will see your total score at the end of the quiz.\n')
+    print('5. Each correct answer is worth one point.\n\n')
+    time.sleep(3)
+    is_ready = input("Type p when you are ready.\n")
+    if is_ready.lower() == 'p':
+        pass
+    
 
 def display_score_board():
     print('Fetching the highest 5 scores...\n')
@@ -233,6 +238,18 @@ def rank_score():
     print(f'The median score is: {st.median(scores)}')
     print(f'The highest score is: {max(scores)}')
 
+
+def play(user):
+    user.answers = []
+    user.score = 0
+    for i in range(10):
+        user.show_question(i)
+        user.validate_answer()
+        user.answers.append(user.given_answer)
+        user.evaluate_answer(i, user.given_answer)
+    return user.answers
+
+
 def end_quiz(user):
     """
     Show own and others' score
@@ -241,6 +258,19 @@ def end_quiz(user):
     add_new_data(user)
     rank_score()
     print(f'You have answered {user.score} questions out of {len(qsns)}.')
+    time.sleep(2)
+    print('Thank you for playing.\n')
+    next = input('What do you want to do next?\n(Type P to play again or Q to quit.)\n')
+    if next.lower() == 'p':
+        play(user)
+        return end_quiz(user)
+    elif next.lower():
+        print('Thank you for playing.\nGoodbye!!')
+        time.sleep(2)
+        exit()
+    else:
+        print('I do not understand what you would like to do next.\n(Please type P to play or Q to quit.)\n')
+
 
 
 def main():
@@ -250,14 +280,7 @@ def main():
     welcome_board()
     main_menu()
     user = User()
-    user.answers = []
-    for i in range(10):
-        user.show_question(i)
-        user.validate_answer()
-        user.answers.append(user.given_answer)
-        user.evaluate_answer(i, user.given_answer)
-
+    play(user)
     end_quiz(user)
-
 
 main()

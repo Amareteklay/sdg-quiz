@@ -1,7 +1,7 @@
 def questionBank():
     questions = [
 
-        {'question': 'SDG stands for:',
+        {'question': 'What does SDG stand for?',
          'choices': {
              'A': 'Sustainable Department Goals',
              'B': 'Sustainable Development Goals',
@@ -74,7 +74,7 @@ What are these means of implementation?''',
              'C': 'Responsible consumption and production',
              'D': 'Life on land'},
          'answer': 'C'},
-         
+        # https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden.
         {'question': '''Based on the 2022 Climate Change Performance Index, ______ was 
 ranked as the country with the highest achievement in climate protection, followed by _______.''',
          'choices': {
