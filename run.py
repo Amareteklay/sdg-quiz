@@ -18,7 +18,7 @@ SCOPE = [
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT =gspread.authorize(SCOPED_CREDS)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('sdg_quiz')
 
 users = SHEET.worksheet('users')
@@ -27,6 +27,7 @@ answers = SHEET.worksheet('answers')
 # Create a list of question dictionaries.
 qsns = questionBank()
 score = 0
+
 
 class Question:
     """
@@ -58,10 +59,10 @@ class Question:
         Display question prompt and choices
         """
         print(f'{self.question_index}. {self.question} \n')
-        print('A.', self.choice_a, '\n')
-        print('B.', self.choice_b, '\n')
-        print('C.', self.choice_c, '\n')
-        print('D.', self.choice_d, '\n')
+        print('  A.', self.choice_a, '\n')
+        print('  B.', self.choice_b, '\n')
+        print('  C.', self.choice_c, '\n')
+        print('  D.', self.choice_d, '\n')
         self.user_answer = self.get_answer()
 
 
@@ -81,16 +82,18 @@ class User:
         """
         Accept user input and validate it.
         """
-        print(colored('...................................', 'yellow'))
+        print(colored('.........................', 'yellow'))
         self.name = input('Enter your name.\n')
         os.system('clear')
+        print('\n'*2)
         print(colored(f'Good luck, {self.name}!', 'yellow'))
-        print('...........................................\n')
+        print('....................\n')
+        print('\n')
         while True:
-            if len(self.name)<=1:
+            if len(self.name) <= 1:
                 print('Name should be at least 2 characters.\n')
                 self.name = input('Please enter a valid name.\n')
-            elif len(self.name)>20:
+            elif len(self.name) > 20:
                 print('Name may not be more than 20 characters.\n')
                 self.name = input('Please enter a valid name.\n')
             else:
@@ -139,15 +142,16 @@ class User:
         time.sleep(1)
         os.system("clear")
 
+
 def welcome_board():
     """
     Display a Welcome message to the user
     """
     sdg_art = text2art("SDG-Quiz")
-    print(colored(f'::::::::::::::::::::::: WELCOME :::::::::::::::::::::', 'yellow'))
-    print(colored(f'                          TO               ', 'yellow'))                       
+    print(colored(f''':::::::::::::::: WELCOME :::::::::::::::::''', 'yellow'))
+    print(colored(f'''                   TO             ''', 'yellow'))
     print(colored(f'{sdg_art}', 'green'))
-    print(colored(f':::::::::::::::::::::::::::::::::::::::::::::::::::::', 'yellow'))
+    print(colored(f'''::::::::::::::::::::::::::::::::::::::::::''', 'yellow'))
     time.sleep(2)
 
 
@@ -168,7 +172,7 @@ def display_instructions():
     is_ready = input("Type p when you are ready.\n")
     if is_ready.lower() == 'p':
         pass
-    
+
 
 def display_score_board():
     print('Fetching the highest 5 scores...\n')
@@ -180,15 +184,27 @@ def display_score_board():
         display_instructions()
     else:
         print('Thank you for showing interest. \n Goodbye!')
+        exit()
+
 
 def sdg_note():
-    print('''
-    The Sustainable Development Goals (SDGs), also known as the Global Goals, 
-    were adopted by the United Nations in 2015 as a universal call to action to end poverty, 
-    protect the planet, and ensure that by 2030 all people enjoy peace and prosperity.\n
-    The 17 SDGs are integrated—they recognize that action in one area will affect outcomes in others, 
-    and that development must balance social, economic and environmental sustainability.
+    print('''\n
+    The Sustainable Development Goals (SDGs), also known as the
+    Global Goals, were adopted by the United Nations in 2015 as a
+    universal call to action to end poverty,
+    protect the planet, and ensure that by 2030 all people enjoy
+    peace and prosperity.\n
+    The 17 SDGs are integrated—they recognize that action in one area will
+    affect outcomes in others, and that development must balance social,
+    economic and environmental sustainability.\n
     ''')
+    time.sleep(3)
+    take_quiz = input('Do you want to take the quiz now?(y/n)\n')
+    if take_quiz.lower() == 'y':
+        os.system('clear')
+    else:
+        print('Thank you for showing up.\nGoodbye!')
+        exit()
 
 
 def main_menu():
@@ -228,6 +244,7 @@ def add_new_data(user):
     users.append_row(new_data)
     users.sort((2, 'des'),)
 
+
 def rank_score():
     """
     Get updated data
@@ -256,11 +273,18 @@ def end_quiz(user):
     """
     print('Calculating your score...\n')
     add_new_data(user)
+    print(f'You have correctly answered {user.score} questions out of {len(qsns)}.')
+    if user.score >= 7:
+        print(colored(f'Excellent, {user.name}!', 'green'))
+    elif user.score >= 5:
+        print(colored(f'Very good, {user.name}!', 'green'))
+    else:
+        print(colored(f'Nice, {user.name}!', 'green'))
     rank_score()
-    print(f'You have answered {user.score} questions out of {len(qsns)}.')
     time.sleep(2)
     print('Thank you for playing.\n')
-    next = input('What do you want to do next?\n(Type P to play again or Q to quit.)\n')
+    next = input('''What do you want to do next?\n
+(Type P to play again or Q to quit.)\n''')
     if next.lower() == 'p':
         play(user)
         return end_quiz(user)
@@ -269,8 +293,8 @@ def end_quiz(user):
         time.sleep(2)
         exit()
     else:
-        print('I do not understand what you would like to do next.\n(Please type P to play or Q to quit.)\n')
-
+        print('''I do not understand what you would like to do next.\n
+        (Please type P to play or Q to quit.)\n''')
 
 
 def main():
