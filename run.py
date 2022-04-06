@@ -51,7 +51,7 @@ class Question:
         """
         Get answer as user input
         """
-        self.user_answer = input('Enter your answer.\n')
+        self.user_answer = input('Enter your answer:\n')
         return self.user_answer
 
     def ask_question(self):
@@ -82,13 +82,12 @@ class User:
         """
         Accept user input and validate it.
         """
-        print(colored('.........................', 'yellow'))
-        self.name = input('Enter your name.\n')
+        print(colored('\n...................', 'yellow'))
+        self.name = input('Enter your name:\n')
         os.system('clear')
-        print('\n'*2)
-        print(colored(f'Good luck, {self.name}!', 'yellow'))
-        print('....................\n')
         print('\n')
+        print(colored(f'Best of luck, {self.name}!', 'yellow'))
+        print('..................\n')
         while True:
             if len(self.name) <= 1:
                 print('Name should be at least 2 characters.\n')
@@ -105,6 +104,7 @@ class User:
         Display questions and choices
         """
         self.question_object = Question(question_index, qsns[question_index])
+        time.sleep(1)
         self.question_object.ask_question()
         self.given_answer = self.question_object.user_answer
         return self.given_answer
@@ -123,7 +123,7 @@ class User:
         Change input to lower case and look it up in the list.
         """
         while self.given_answer.lower() not in ['a', 'b', 'c', 'd']:
-            print('You answer should be one of: a, b, c or d')
+            print('Your answer should be one of: a, b, c or d')
             self.given_answer = input('Try again.\n')
         return self.given_answer
 
@@ -133,14 +133,14 @@ class User:
         Compare it with corrent answer for the given question.
         Display feedback and if answer is correct, increment score.
         """
-        print('\n')
         if given_answer.upper() == qsns[qsn]['answer']:
             print(colored(f'Correct! Well done, {self.name}!', 'green'))
             self.update_score()
         else:
             print(colored('That was incorrect.', 'red'))
+            print(f"The correct answer is: {qsns[qsn]['answer']}.")
+        print('\n')
         time.sleep(1)
-        os.system("clear")
 
 
 def welcome_board():
@@ -148,7 +148,6 @@ def welcome_board():
     Display a Welcome message to the user
     """
     sdg_art = text2art("SDG-Quiz")
-    print('\n')
     print(colored(f'''::::::::::::::::::::: WELCOME :::::::::::::::::::::''', 'yellow'))
     print(colored(f'''                       TO             ''', 'yellow'))
     print(colored(f'{sdg_art}', 'green'))
@@ -170,9 +169,24 @@ def display_instructions():
     print('4. You will see your total score at the end of the quiz.\n')
     print('5. Each correct answer is worth one point.\n\n')
     time.sleep(3)
-    is_ready = input("Type p when you are ready.\n")
-    if is_ready.lower() == 'p':
+    is_ready = input("Press P when you are ready.\n")
+    while is_ready.lower() != 'p':
+        is_ready = input('Invalid input! Please press P to start the quiz.\n')
+    else:
         pass
+
+def will_play():
+    will_play = input('Press P to take the quiz.\nPress Q to exit.\n')
+    if will_play.lower() == 'p':
+        os.system('clear')
+        display_instructions()
+    elif will_play.lower() == 'q':
+        print('Thank you for showing interest. \n Goodbye!')
+        exit()
+    else: 
+        print('Invalid choice!\n Please press P or Q.')
+        return will_play()
+
 
 
 def display_score_board():
@@ -180,12 +194,7 @@ def display_score_board():
     data = users.get_all_values()
     print(tabulate(data[0:5], headers='firstrow', tablefmt='fancy_grid'))
     time.sleep(3)
-    will_play = input('Do you want to take the quiz? (Enter y or n) \n')
-    if will_play.lower() == 'y':
-        display_instructions()
-    else:
-        print('Thank you for showing interest. \n Goodbye!')
-        exit()
+    will_play()
 
 
 def sdg_note():
@@ -200,12 +209,7 @@ def sdg_note():
     economic and environmental sustainability.\n
     ''')
     time.sleep(3)
-    take_quiz = input('Do you want to take the quiz now?(y/n)\n')
-    if take_quiz.lower() == 'y':
-        os.system('clear')
-    else:
-        print('Thank you for showing up.\nGoodbye!')
-        exit()
+    will_play()
 
 
 def main_menu():
@@ -253,7 +257,8 @@ def rank_score():
     Calculate and display descriptive statistics of score
     """
     scores = [int(item) for item in users.col_values(2)[1:]]
-    print(f'The average score is: {st.mean(scores)}')
+    print(colored(':::::Quiz Statistics:::::\n', 'yellow'))
+    print(f'The average score is: {round(st.mean(scores), 2)}')
     print(f'The median score is: {st.median(scores)}')
     print(f'The highest score is: {max(scores)}')
 
@@ -273,8 +278,14 @@ def end_quiz(user):
     """
     Show own and others' score
     """
-    print('Calculating your score...\n')
+    os.system('clear')
+    qover_art = text2art("QUIZ OVER")
+    print(colored(f'{qover_art}', 'yellow'))
+    print('\nCalculating your score...\n')
+    time.sleep(3)
+    os.system('clear')
     add_new_data(user)
+    print(colored(f'{qover_art}', 'yellow'))
     print(f'You have correctly answered {user.score} questions out of {len(qsns)}.')
     if user.score >= 7:
         print(colored(f'Excellent, {user.name}!', 'green'))
@@ -282,22 +293,11 @@ def end_quiz(user):
         print(colored(f'Very good, {user.name}!', 'green'))
     else:
         print(colored(f'Nice, {user.name}!', 'green'))
+    print('\n')
     rank_score()
     time.sleep(2)
     print('\n')
-    print('Thank you for taking the quiz.\n')
-    next = input('''What do you want to do next?
-(Type P to play again or Q to quit.)\n''')
-    if next.lower() == 'p':
-        play(user)
-        return end_quiz(user)
-    elif next.lower():
-        print('Thank you for playing.\nGoodbye!!')
-        time.sleep(2)
-        exit()
-    else:
-        print('''I do not understand what you would like to do next.\n
-        (Please type P to play or Q to quit.)\n''')
+    print('Click on the Run Program button to start again.\n')
 
 
 def main():
