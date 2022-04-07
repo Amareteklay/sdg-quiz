@@ -1,4 +1,8 @@
 def questionBank():
+    """
+    A function that stores and returns
+    a list of dictionaries of questions
+    """
     questions = [
 
         {'question': 'What does SDG stand for?',

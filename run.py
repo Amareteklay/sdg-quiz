@@ -149,10 +149,12 @@ def welcome_board():
     """
     sdg_art = text2art("SDG-Quiz")
     print('\n')
-    print(colored(f'''::::::::::::::::::::: WELCOME :::::::::::::::::::::''', 'yellow'))
+    print(colored(f'::::::::::::::::::::: WELCOME :::::::::::::::::::::',
+                  'yellow'))
     print(colored(f'''                        TO             ''', 'yellow'))
     print(colored(f'{sdg_art}', 'green'))
-    print(colored(f''':::::::::::::::::::::::::::::::::::::::::::::::::::''', 'yellow'))
+    print(colored(f':::::::::::::::::::::::::::::::::::::::::::::::::::',
+                  'yellow'))
     time.sleep(2)
 
 
@@ -176,6 +178,7 @@ def display_instructions():
     else:
         pass
 
+
 def will_play():
     play_quiz = input('Press P to take the quiz.\nPress Q to exit.\n')
     if play_quiz.lower() == 'p':
@@ -184,10 +187,9 @@ def will_play():
     elif play_quiz.lower() == 'q':
         print('Thank you for showing interest.\nGoodbye!')
         exit()
-    else: 
+    else:
         print('Invalid choice!\n')
         return will_play()
-
 
 
 def display_score_board():
@@ -243,22 +245,31 @@ def main_menu():
     print('   2. Show highest scores\n')
     print('   3. Read about SDGs\n')
     print('   4. Exit\n')
-    menu_choice = input('Type 1, 2, 3 or 4 and hit Enter.\n')
-
-    if int(menu_choice) == 1:
-        display_instructions()
-    elif int(menu_choice) == 2:
-        display_score_board()
-    elif int(menu_choice) == 3:
-        sdg_note()
-    elif int(menu_choice) == 4:
-        print('Thank for stopping by.\nGoodbye!')
-        time.sleep(2)
-        os.system('clear')
-        exit()
-    else:
-        print('Invalid input.\n')
-        return main_menu()
+    menu_choice = None
+    while True:
+        menu_choice = input('Type 1, 2, 3 or 4 and hit Enter.\n')
+        try:
+            menu_choice = int(menu_choice)
+        except ValueError:
+            print('Invalid input! Please choose one of the alternatives')
+            continue
+        if menu_choice == 1:
+            display_instructions()
+            break
+        elif menu_choice == 2:
+            display_score_board()
+            break
+        elif menu_choice == 3:
+            sdg_note()
+            break
+        elif menu_choice == 4:
+            print('Thank for stopping by.\nGoodbye!')
+            time.sleep(2)
+            os.system('clear')
+            exit()
+            break
+        else:
+            print('Choice out of range.')
 
 
 def add_new_data(user):
@@ -307,14 +318,15 @@ def end_quiz(user):
     print('Calculating your score...\n')
     time.sleep(3)
     add_new_data(user)
-    print(f'You have correctly answered {user.score} questions out of {len(qsns)}.')
+    print(f'''You have correctly answered {user.score}
+            questions out of {len(qsns)}.''')
     if user.score >= 7:
         print(colored(f'Excellent, {user.name}!', 'green'))
     elif user.score >= 5:
         print(colored(f'Very good, {user.name}!', 'green'))
     else:
         print(colored(f'Nice, {user.name}!', 'green'))
-    print('\nThank you for taking the', colored('SDG QUIZ', 'green'),'.')
+    print('\nThank you for taking the', colored('SDG QUIZ', 'green'), '.')
     rank_score()
     time.sleep(2)
     print('\n')

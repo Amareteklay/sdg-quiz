@@ -16,10 +16,10 @@ By taking the SDG Quiz, individuals can have an idea of *how much they know* the
 
 # User stories
 
-- As a user, I want to take a quiz about SDGs to assess my understanding so that I can be more mindful about sustainability.
+- As a user, I want to take a quiz about SDGs to assess my knowledge and understanding of the SDGs so that I can be more mindful about sustainability.
 - As a user, I want to see how others are doing in the quiz so that I can compare my performance to others.
 - As a user, I want to read basic facts about the SDGs so that I can refresh my memory.
-- As a user, I want to be able to get feedback at each stage of the game so that I can understand if my actions are properly handled by the application.
+- As a user, I want to be able to get feedback at each stage of the quiz so that I can understand if my actions are properly handled by the application.
 - As a user, I want to know how many questions there are and how many I have left so that I can expect when the quiz ends.
 - As a user, I want to see my results both for each question and overall so that I learn from questions I fail to answer too.
 - As a user, I want to be able to choose what to do and be given appropriate feedback when I make mistakes so that I get the best out of the quiz.
@@ -83,55 +83,79 @@ One of the user stories is that users want to read about SDGs to refresh their m
 ## 5. Quit the app
 As a part of the main menu, the user has an option to exit the application. Once the user provides a valid input nad if the choice they make is to quit and exit the application, the program thanks the user for stopping by and says 'Goodbye!'
 
+### Features not implemented
+I have mentioned earlier that the program records the answers a user gives to each question. There are several potential use cases where additional features can be added to make use of this data. 
 
+![Answers recorded in Google sheet](./assets/images/answers_google_sheet.jpg).
 
+One that is particularly compelling in the context of SDGs is for research that tries to link the patterns in the answers that users provide and other characteristics that can be collected by including survey questions. However, this is beyond the scope of this project, and hence not implemented.
 
-## Features not implemented
-It is worth mentioning that this quiz can be extended in different directions. One of the cool features that can be added in the future is adding survey questions at the end that users can voluntarily fill that out so that the survey data and the snwers and scores (which are already recorded) can be used for research.
-
-
-I used the aforementioned user stories as well as the learning outcomes of this project to guide me through the inception, implementation and deployment process. 
-
+# Testing
+I have described the process of design and implementation. Now it is time to test final application against the user stories, learning outcomes and other performance indicators.
 ## Testing user stories
-
-
+- **User story:** take a quiz about SDGs to assess one's knowledge and understanding of the SDGs
+  - *Features:* One can choose 1 in the main menu, follow the instructions and take a quiz that has 10 multiple choice questions about the SDGs. 
+- **User story:** see how others are doing in the quiz 
+  - *Features:* One can choose 2 in the main menu and see the top five scores in the quiz.
+- **User story:** read basic facts about the SDGs
+  - *Features:* One can choose 3 in the main menu and read a brief note about the SDGs. The user finds all 17 goals listed in the same screen. 
+- **User story:** get feedback at each stage of the quiz
+  - *Features:* In all interactions between the user and the program where the user provides input, validation checks are followed by helpful feedback or error messages depending on the particular circumstance.  
+- **User story:** know how many questions there are and how many I have left
+  - *Features:* The instructions screen informs the user that there are 10 questions and each question is displayed with a question number in front of it. So the user knows at each step which question out of 10 questions they are answering.  
+- **User story:** see results both for each question and overall
+  - *Features:* Each valid answer that the user provides is evaluated and the user is told whether the answer was correct or not. At the end of the quiz, the user gets a report specifying how many correct answers they got out of 10. In fact, the user also gets a summary statistics of the quiz scores in case they want to compare their performance with those of other participants.  
+- **User story:** be able to choose what to do and be given appropriate feedback
+  - *Features:* The user is given different choices at different stages of the quiz. For example, the user is asked to press P to play or Q to quit once they read the notes or see the scores. This user story is one of the reasons for the option to exit the quiz from the main menu. The user can also choose when to proceed after reading the general instructions.  
 ## Testing Learning outcomes
-### LO1: Implementat algorithm
+Some of the learning outcomes in this project are generic in the sense that there is no specific feature or set of features that indicate that they are met. The performance of the application as well as the entire development process 
+- **LO1: Implement algorithm**
+  - I have tested the python code manually for PEP8 compliance and there are no issues.
 
-### LO2: Solve problem
+  [PEP8 Check](./assets/images/pep8_check2.jpg)
 
-
-### LO3: Standard programming constructs
-
-
-### LO4: Explain 
-
-
-### LO5: Debugging
-
-
-### LO6: CLI using libraries
-
-
-### LO7: Data model
+  - The functionalities for the project work as intended. 
+  - I have tried to follow conventions and standards to make sure that the code is readable. I have included comments, indentations, and meaningful and self-explanatory names of classes, functions and variables. 
+- **LO2: Solve problem**
+  - 
+  - 
+- **LO3: Standard programming constructs**
+  - 
+  - 
+- **LO4: Explain** 
 
 
-### LO8: Version control
+- **LO5: Debugging**
 
 
-### LO9: Deployment 
+- **LO6: CLI using libraries**
+
+
+- **LO7: Data model**
+
+
+- **LO8: Version control**
+
+
+- **LO9: Deployment** 
 
 
 
-### Features to be added
-For research purposes, an admin part is possible. I have included a sheet to record answers. If need be there, one can add survey questions in the end and study who answered which question and what patterns are there between answers and user profile.
+# Technologies used 
+- I used python programming language to develop this application. It is the only required technology in this project.
+- I used [ASCII Art Library For Python](https://pypi.org/project/art/) to create ASCII art.
+- Lucid chart to sketch flow charts of the data models.
+- Google sheets to store data.
 
-- I used [ASCII Art Library For Python](https://pypi.org/project/art/) to create ASCII art
-- Lucid chart to sketch flow charts
-- Google sheets to store data
-
+# Credit
+## Content
 - Description of SDGs was copied from [this page](https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=Cj0KCQjw3IqSBhCoARIsAMBkTb3nuP_n4d0SmgyXs19VU0vFHfZphewUCOk3J0hHHeh8Gv17Xt6I1g4aAk-fEALw_wcB).
 - The list of SDGs in the SDG note screen were copied from [this page](https://www.un.org/development/desa/disabilities/envision2030.html).
+## Code
+- I used the template provided by the CI to develop this application. Hosting it on a virtual CLI would have been difficult if this template were not available.
+
+# Acknowledgements
+I am always grateful to Moosa, my mentor for his helpful suggestions and encouraging words. I would like to thank the CI developers who created this well-designed and well-presented python essentials course. 
 
 
 
