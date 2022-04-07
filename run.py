@@ -162,7 +162,7 @@ def display_instructions():
     """
     os.system('clear')
     print(colored('::::::::::::::::::::::::::::::::', 'yellow'))
-    print(colored('::     General Intructions    ::', 'yellow'))
+    print(colored('::     General Instructions    ::', 'yellow'))
     print(colored('::::::::::::::::::::::::::::::::\n', 'yellow'))
     print('1. This quiz consists of 10 multiple choice questions.\n')
     print('2. You will answer each question by selecting a, b, c or d.\n')
@@ -200,7 +200,7 @@ def display_score_board():
 
 def sdg_note():
     os.system('clear')
-    print('''\n
+    print('''
     The Sustainable Development Goals (SDGs), also known as the
     Global Goals, were adopted by the United Nations in 2015 as a
     universal call to action to end poverty,
@@ -209,6 +209,24 @@ def sdg_note():
     The 17 SDGs are integrated—they recognize that action in one area will
     affect outcomes in others, and that development must balance social,
     economic and environmental sustainability.\n
+    The 17 sustainable development goals (SDGs) to transform our world are:
+    GOAL 1: No Poverty
+    GOAL 2: Zero Hunger
+    GOAL 3: Good Health and Well-being
+    GOAL 4: Quality Education
+    GOAL 5: Gender Equality
+    GOAL 6: Clean Water and Sanitation
+    GOAL 7: Affordable and Clean Energy
+    GOAL 8: Decent Work and Economic Growth
+    GOAL 9: Industry, Innovation and Infrastructure
+    GOAL 10: Reduced Inequality
+    GOAL 11: Sustainable Cities and Communities
+    GOAL 12: Responsible Consumption and Production
+    GOAL 13: Climate Action
+    GOAL 14: Life Below Water
+    GOAL 15: Life on Land
+    GOAL 16: Peace and Justice Strong Institutions
+    GOAL 17: Partnerships to achieve the Goal
     ''')
     time.sleep(3)
     will_play()
@@ -234,7 +252,7 @@ def main_menu():
     elif int(menu_choice) == 3:
         sdg_note()
     elif int(menu_choice) == 4:
-        print('Goodbye!')
+        print('Thank for stopping by.\nGoodbye!')
         time.sleep(2)
         os.system('clear')
         exit()
