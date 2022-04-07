@@ -25,7 +25,7 @@ users = SHEET.worksheet('users')
 answers = SHEET.worksheet('answers')
 
 # Create a list of question dictionaries.
-qsns = questionBank()
+all_questions = questionBank()
 score = 0
 
 
@@ -82,28 +82,27 @@ class User:
         """
         Accept user input and validate it.
         """
-        print(colored('\n...................', 'yellow'))
-        self.name = input('Enter your name:\n')
-        os.system('clear')
-        print('\n')
-        print(colored(f'Best of luck, {self.name}!', 'yellow'))
-        print('..................\n')
+        print(colored('\n................', 'yellow'))
         while True:
-            if len(self.name) <= 1:
-                print('Name should be at least 2 characters.\n')
-                self.name = input('Please enter a valid name.\n')
-            elif len(self.name) > 20:
-                print('Name may not be more than 20 characters.\n')
-                self.name = input('Please enter a valid name.\n')
+            self.name = input('Enter your name:\n')
+            if self.name.isalpha():
+                if len(self.name) <= 1 or len(self.name) >20:
+                    print('Name should be between 2 and 20 characters long.\n')
+                else:
+                    break
             else:
-                break
+                print('Please use only alphabets.')
+        os.system('clear')
+        print(colored('......................', 'yellow'))
+        print(colored(f'| Best of luck, {self.name}!', 'yellow'))
+        print(colored('......................\n', 'yellow'))
         return self.name
 
     def show_question(self, question_index):
         """
         Display questions and choices
         """
-        self.question_object = Question(question_index, qsns[question_index])
+        self.question_object = Question(question_index, all_questions[question_index])
         time.sleep(1)
         self.question_object.ask_question()
         self.given_answer = self.question_object.user_answer
@@ -127,18 +126,18 @@ class User:
             self.given_answer = input('Try again.\n')
         return self.given_answer
 
-    def evaluate_answer(self, qsn, given_answer):
+    def evaluate_answer(self, this_question, given_answer):
         """
         Get the current question number and the current answer.
         Compare it with corrent answer for the given question.
         Display feedback and if answer is correct, increment score.
         """
-        if given_answer.upper() == qsns[qsn]['answer']:
+        if given_answer.upper() == all_questions[this_question]['answer']:
             print(colored(f'Correct! Well done, {self.name}!', 'green'))
             self.update_score()
         else:
             print(colored('That was incorrect.', 'red'))
-            print(f"The correct answer is: {qsns[qsn]['answer']}.")
+            print(f"The correct answer is: {all_questions[this_question]['answer']}.")
         print('\n')
         time.sleep(1)
 
@@ -172,15 +171,16 @@ def display_instructions():
     print('4. You will see your total score at the end of the quiz.\n')
     print('5. Each correct answer is worth one point.\n\n')
     time.sleep(3)
-    is_ready = input("Press P when you are ready.\n")
-    while is_ready.lower() != 'p':
-        is_ready = input('Invalid input! Please press P to start the quiz.\n')
-    else:
-        pass
+    is_ready = ''
+    while True:
+        is_ready = input("Press P and hit Enter to start the quiz.\n")
+        if is_ready.lower() == 'p':
+            break
 
 
 def will_play():
-    play_quiz = input('Press P to take the quiz.\nPress Q to exit.\n')
+    play_quiz = input('''Press P and hit Enter to take the quiz.
+    \nPress Q and hit Enter to exit.\n''')
     if play_quiz.lower() == 'p':
         os.system('clear')
         display_instructions()
@@ -188,7 +188,7 @@ def will_play():
         print('Thank you for showing interest.\nGoodbye!')
         exit()
     else:
-        print('Invalid choice!\n')
+        print(colored('Invalid choice!', 'red'))
         return will_play()
 
 
@@ -318,8 +318,8 @@ def end_quiz(user):
     print('Calculating your score...\n')
     time.sleep(3)
     add_new_data(user)
-    print(f'''You have correctly answered {user.score}
-            questions out of {len(qsns)}.''')
+    print(f'''You have correctly answered {user.score}\
+questions out of {len(all_questions)}.''')
     if user.score >= 7:
         print(colored(f'Excellent, {user.name}!', 'green'))
     elif user.score >= 5:
