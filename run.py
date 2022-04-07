@@ -148,8 +148,9 @@ def welcome_board():
     Display a Welcome message to the user
     """
     sdg_art = text2art("SDG-Quiz")
+    print('\n')
     print(colored(f'''::::::::::::::::::::: WELCOME :::::::::::::::::::::''', 'yellow'))
-    print(colored(f'''                       TO             ''', 'yellow'))
+    print(colored(f'''                        TO             ''', 'yellow'))
     print(colored(f'{sdg_art}', 'green'))
     print(colored(f''':::::::::::::::::::::::::::::::::::::::::::::::::::''', 'yellow'))
     time.sleep(2)
@@ -176,15 +177,15 @@ def display_instructions():
         pass
 
 def will_play():
-    will_play = input('Press P to take the quiz.\nPress Q to exit.\n')
-    if will_play.lower() == 'p':
+    play_quiz = input('Press P to take the quiz.\nPress Q to exit.\n')
+    if play_quiz.lower() == 'p':
         os.system('clear')
         display_instructions()
-    elif will_play.lower() == 'q':
-        print('Thank you for showing interest. \n Goodbye!')
+    elif play_quiz.lower() == 'q':
+        print('Thank you for showing interest.\nGoodbye!')
         exit()
     else: 
-        print('Invalid choice!\n Please press P or Q.')
+        print('Invalid choice!\n')
         return will_play()
 
 
@@ -198,6 +199,7 @@ def display_score_board():
 
 
 def sdg_note():
+    os.system('clear')
     print('''\n
     The Sustainable Development Goals (SDGs), also known as the
     Global Goals, were adopted by the United Nations in 2015 as a
@@ -234,6 +236,7 @@ def main_menu():
     elif int(menu_choice) == 4:
         print('Goodbye!')
         time.sleep(2)
+        os.system('clear')
         exit()
     else:
         print('Invalid input.\n')
@@ -257,10 +260,12 @@ def rank_score():
     Calculate and display descriptive statistics of score
     """
     scores = [int(item) for item in users.col_values(2)[1:]]
+    print('\n')
     print(colored(':::::Quiz Statistics:::::\n', 'yellow'))
     print(f'The average score is: {round(st.mean(scores), 2)}')
     print(f'The median score is: {st.median(scores)}')
     print(f'The highest score is: {max(scores)}')
+    print(colored('.........................', 'yellow'))
 
 
 def play(user):
@@ -281,11 +286,9 @@ def end_quiz(user):
     os.system('clear')
     qover_art = text2art("QUIZ OVER")
     print(colored(f'{qover_art}', 'yellow'))
-    print('\nCalculating your score...\n')
+    print('Calculating your score...\n')
     time.sleep(3)
-    os.system('clear')
     add_new_data(user)
-    print(colored(f'{qover_art}', 'yellow'))
     print(f'You have correctly answered {user.score} questions out of {len(qsns)}.')
     if user.score >= 7:
         print(colored(f'Excellent, {user.name}!', 'green'))
@@ -293,7 +296,7 @@ def end_quiz(user):
         print(colored(f'Very good, {user.name}!', 'green'))
     else:
         print(colored(f'Nice, {user.name}!', 'green'))
-    print('\n')
+    print('\nThank you for taking the', colored('SDG QUIZ', 'green'),'.')
     rank_score()
     time.sleep(2)
     print('\n')

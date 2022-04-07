@@ -33,7 +33,8 @@ def questionBank():
              'D': 'None'},
          'answer': 'D'},
 
-        {'question': '''Goal 17 seeks to Strengthen the means of implementation and revitalize the Global Partnership for Sustainable Development. 
+        {'question': '''Goal 17 seeks to Strengthen the means of implementation and revitalize the 
+        Global Partnership for Sustainable Development. 
 What are these means of implementation?''',
          'choices': {
              'A': 'Finance',
@@ -51,7 +52,8 @@ What are these means of implementation?''',
              'D': 'Using more than we produce or grow'},
          'answer': 'A'},
 
-        {'question': 'Which SDG aims to Conserve and sustainably use the oceans, seas and marine resources for Sustainable Development?',
+        {'question': '''Which SDG aims to Conserve and sustainably use the oceans, seas and marine
+         resources for Sustainable Development?''',
          'choices': {
              'A': 'Life of land',
              'B': 'Life below water',
@@ -64,10 +66,12 @@ What are these means of implementation?''',
              'A': 'Sustainable development is the same as economic development',
              'B': 'The 2030 Agenda for Sustainable Development has 17 goals and 169 targets',
              'C': 'Each of the 17 goals in the SDGs has the same number of targets',
-             'D': 'Developed countries do not have to include SDGs in their national policies because they are already developed'},
+             'D': '''Developed countries do not have to include SDGs in their national policies 
+             because they are already developed'''},
          'answer': 'B'},
 
-        {'question': 'Which goal aims to achieve sustainable management and efficient use of natural resources by 2030?',
+        {'question': '''Which goal aims to achieve sustainable management and efficient
+         use of natural resources by 2030?''',
          'choices': {
              'A': 'Climate actions',
              'B': 'Clean water and sanitation',
@@ -76,7 +80,8 @@ What are these means of implementation?''',
          'answer': 'C'},
         # https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden.
         {'question': '''Based on the 2022 Climate Change Performance Index, ______ was 
-ranked as the country with the highest achievement in climate protection, followed by _______.''',
+ranked as the country with the highest achievement in climate protection, 
+followed by _______.''',
          'choices': {
              'A': 'Denmark, Sweden',
              'B': 'Sweden, Denmark',
