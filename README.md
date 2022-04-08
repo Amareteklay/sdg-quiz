@@ -112,41 +112,83 @@ Some of the learning outcomes in this project are generic in the sense that ther
 - **LO1: Implement algorithm**
   - I have tested the python code manually for PEP8 compliance and there are no issues.
 
-  [PEP8 Check](./assets/images/pep8_check2.jpg)
+    ![PEP8 Check](./assets/images/pep8_check2.jpg)
 
   - The functionalities for the project work as intended. 
-  - I have tried to follow conventions and standards to make sure that the code is readable. I have included comments, indentations, and meaningful and self-explanatory names of classes, functions and variables. 
+  - The program follows conventions and standards to make sure that the code is readable. Apropriate and helpful comments, indentations, and meaningful and self-explanatory names of classes, functions and variables have been used. 
 - **LO2: Solve problem**
-  - 
-  - 
+  - The code handles empty or invalid input data. When the program prompts the user to press P or Q, for example, it only accepts P or Q (case insensitive though). User name cannot be empty, or less than 2 characters or above 20 characters and it should have only alphabets. When the user provides any input that violates these requirements, a custom message is shown to help the user provide a valid name. 
+  - External libraries and modules are imported at the beginning of the program and indicated by way of comments. The data file has inline comments to show questions that were taken or adapted from other sources (given due credit below.)
+  - I have used functions that perform specific tasks such as getting name, validating input, evaluating results, displaying instructions and so on.
 - **LO3: Standard programming constructs**
-  - 
-  - 
+  - This application implements different standard programming contructs. To benefit from the object-oriented approach, users and questions have classes.
+  - As reflected in the [main menu](./assets/images/main_menu.jpg), the program runs different blocks of code and/or different functions and features depending on what the user chooses. When the quiz starts, the program iterates through all the questions. Each question is a dictionary with keys for the question text, choices and the correct answer. A list of question dictionaries is used to make it easy for iteration.
+  - When the user is expected to provide input, different validation checks are made. If a user input for their name consists of numbers, for example, the program tells them that they should use alphabets. If the name is too short or too long, the feedback is specific enough to inform the user what exactly to pay attention to (length of the input), because simply telling them that the name is not valid would not be very helpful in how they correct it.
 - **LO4: Explain** 
-
+  - This learning outcome is about this particular document. I hope it speaks for itself.
 
 - **LO5: Debugging**
-
+  - I have implemented manual testing for code validation. I have tested both the main program and the data file (run and data python files) using pep8 online checker.
+  - Here are the issues I found when I used the pep8 checker and later fixed them.
+    - [Issues in PEP8 test for run.py file](./assets/images/pep8_check1.jpg)
+    - [Issues in run.py fixed](./assets/images/pep8_check2.jpg)
+    - [Issues in PEP8 test for data file](./assets/images/pep8_check_data1.jpg)
+    - [Data file debugged](./assets/images/pep8_check_data2.jpg)
 
 - **LO6: CLI using libraries**
-
+  - I have used different python libraries and modules to implement the required functionality. To mention some, I have used statistics to generate basic descriptive statistics, art to beautify the logo and quiz over message, tabulate to print data in a table on the command line interface.
 
 - **LO7: Data model**
-
+  - Starting with the user stories, I have used a working data model that meets the expected results.
+  - This application has the capability to access google sheets, fetch and sort data, do descriptive statistics and present the required information to the user. 
 
 - **LO8: Version control**
-
-
+  - I used GitHub to store my code as well as, or more importantly, for version control.
 - **LO9: Deployment** 
-
-
+  - I have deployed the SDG QuizApp on [Heroku in this link](https://sdg-quizapp.herokuapp.com/). More on the deployment procedures later.
+  - I have made sure that I removed any commented out code in the deployed application.
 
 # Technologies used 
 - I used python programming language to develop this application. It is the only required technology in this project.
+- I used [pep8 online checker](http://pep8online.com/) to make the code readable.
 - I used [ASCII Art Library For Python](https://pypi.org/project/art/) to create ASCII art.
 - Lucid chart to sketch flow charts of the data models.
 - Google sheets to store data.
+- Gitpod as an online IDE.
+- Heroku to deploy the application and make the site available to the world.
+- GitHub for storing code and for version control.
 
+# Debugging
+- I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by including \ in the code so that python doesn't add unnecessary space when it prints the questions. 
+- I had only limited validation check in the main menu until I used a while loop and the try, except statements which helped me separate errors related to non-numeric input and those that are out of the range of choices. 
+- The average score reported at the end of the quiz would sometimes have many decimal points depending on the values used to calculate it. In the beginning I did not notice this, but in one of the tests I saw that the floating number looked too long. I fixed this by rounding the value obtained from the mean function.
+-  
+# Deployment
+### How to deploy on heroku
+  - Sign in to Heroku (Sign up if for the first time)
+  - Click on **New** on the right hand side and select **Create new app**
+  - Enter App name such as *sdg_quizapp* in my case, and choose region (mine is *Europe*) then click on **Create app**
+  - Select the app you just created from the dashboard and go to **Settings**
+  - Scroll down to **Config Vars** and click the **Reveal Config Vars** button. In the Config Vars, create CREDS key and copy the content of CREDS.json file and paste it as a value for this key. Then enter PORT as a key and give it a value of 8000.
+  - Scroll down and find the **Buildpacks** section. Click on the **Add buildpack** button. Select python and node.js as buildpacks in that order.
+  - Navigate to **Deploy** where you found Settings. 
+  - In the **Deployment method** section, select **Github**. 
+    - To configure access to GitHub, click on your profile, 
+    - Go to Account settings
+    - Select the Applications tab 
+    - Authorize GitHub in the **Third-party Services** section.
+  - Type the name of your repository (mine is *sdg.quiz*) and hit Enter. Select the one you are looking for and click Connect. 
+  - You can choose to deploy manually. I have enabled automatic deploys so that the application captures the updates I push to my GitHub repository. 
+  - Wait for the system to build your app. My application is [live here](https://sdg-quizapp.herokuapp.com/).
+### Cloning
+To clone a copy of the code in the repository to your local machine,
+- Go to https://github.com and find the repository for this project (sdg-quiz) or simply [click here](https://github.com/Amareteklay/sdg-quiz).
+- Click on **Code**, which is a dropdown menu with options to clone using HTTPS, SSH or GitHub CLI.
+- You can choose to download zip file using HTTPS.
+- Or you can copy the command to clipboard.
+- Open the terminal on your machine.
+- Locate the directory where you want to clone.
+- Use *git clone URL*, where is what you just copied to clipboard, and hit Enter to get a local clone of the sdg-quiz application.
 # Credit
 ## Content
 - Description of SDGs was copied from [this page](https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=Cj0KCQjw3IqSBhCoARIsAMBkTb3nuP_n4d0SmgyXs19VU0vFHfZphewUCOk3J0hHHeh8Gv17Xt6I1g4aAk-fEALw_wcB).
