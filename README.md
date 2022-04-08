@@ -159,7 +159,7 @@ Some of the learning outcomes in this project are generic in the sense that ther
 - GitHub for storing code and for version control.
 
 # Debugging
-- I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by including backslash (\) in the code so that python doesn't add unnecessary space when it prints the questions. 
+- I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by using a backslash to indicate a line break in the code to avoid long lines, but to tell python to ignore the line breaks in the printed text. 
 - I had only limited validation check in the main menu until I used a while loop and the try, except statements which helped me separate errors related to non-numeric input and those that are out of the range of choices. 
 - The average score reported at the end of the quiz would sometimes have many decimal points depending on the values used to calculate it. In the beginning I did not notice this, but in one of the tests I saw that the floating number looked too long. I fixed this by rounding the value obtained from the mean function.
 # Deployment

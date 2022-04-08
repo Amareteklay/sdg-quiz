@@ -1,3 +1,7 @@
+# Import textwrap format notes printed on screen
+import textwrap as tr
+
+
 def question_bank():
     """
     A function that stores and returns
@@ -88,6 +92,7 @@ def question_bank():
              'C': 'Responsible consumption and production',
              'D': 'Life on land'},
          'answer': 'C'},
+        # Question adapted from\
         # https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden.
         {'question': 'Based on the 2022 Climate Change Performance Index,\
              ______ was ranked as the country with the highest achievement in\
@@ -106,14 +111,20 @@ def sdg_note():
     """ A function to store and print a short note
     on and a list of the 17 SDGs.
     """
-    print('''The Sustainable Development Goals (SDGs), also known as the\
+    notes = "The Sustainable Development Goals (SDGs), also known as the\
 Global Goals, were adopted by the United Nations in 2015 as a\
 universal call to action to end poverty, protect the planet,\
- and ensure that by 2030 all people enjoy peace and prosperity.\n\
-     The 17 SDGs are integrated—they recognize that action in one area will\
+ and ensure that by 2030 all people enjoy peace and prosperity.\
+The 17 SDGs are integrated—they recognize that action in one area will\
 affect outcomes in others, and that development must balance social,\
-economic and environmental sustainability.\n
-    The 17 sustainable development goals (SDGs) to transform our world are:
+economic and environmental sustainability."
+
+    # Wrap text and print to fit the width constraint
+    for note_line in tr.wrap(notes, width=80):
+        print(note_line)
+
+    # Print list of goals
+    print('''The 17 sustainable development goals (SDGs) to transform our world are:
     GOAL 1: No Poverty
     GOAL 2: Zero Hunger
     GOAL 3: Good Health and Well-being
