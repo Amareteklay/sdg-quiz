@@ -199,6 +199,7 @@ Press Q and hit Enter to exit.\n''')
         display_instructions()
     elif play_quiz.lower() == 'q':
         print('Thank you for showing interest.\nGoodbye!')
+        os.system('clear')
         exit()
     else:
         print(colored('Invalid choice!', 'red'))
