@@ -6,7 +6,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from termcolor import colored
 from art import *
-from questions import questionBank
+from data import question_bank, sdg_note
 
 
 SCOPE = [
@@ -25,7 +25,7 @@ users = SHEET.worksheet('users')
 answers = SHEET.worksheet('answers')
 
 # Create a list of question dictionaries.
-all_questions = questionBank()
+all_questions = question_bank()
 score = 0
 
 
@@ -86,7 +86,7 @@ class User:
         while True:
             self.name = input('Enter your name:\n')
             if self.name.isalpha():
-                if len(self.name) <= 1 or len(self.name) >20:
+                if len(self.name) <= 1 or len(self.name) > 20:
                     print('Name should be between 2 and 20 characters long.\n')
                 else:
                     break
@@ -102,7 +102,8 @@ class User:
         """
         Display questions and choices
         """
-        self.question_object = Question(question_index, all_questions[question_index])
+        self.question_object = Question(question_index,
+                                        all_questions[question_index])
         time.sleep(1)
         self.question_object.ask_question()
         self.given_answer = self.question_object.user_answer
@@ -137,7 +138,8 @@ class User:
             self.update_score()
         else:
             print(colored('That was incorrect.', 'red'))
-            print(f"The correct answer is: {all_questions[this_question]['answer']}.")
+            print(f"The correct answer is:\
+     {all_questions[this_question]['answer']}.")
         print('\n')
         time.sleep(1)
 
@@ -200,40 +202,6 @@ def display_score_board():
     will_play()
 
 
-def sdg_note():
-    os.system('clear')
-    print('''
-    The Sustainable Development Goals (SDGs), also known as the
-    Global Goals, were adopted by the United Nations in 2015 as a
-    universal call to action to end poverty,
-    protect the planet, and ensure that by 2030 all people enjoy
-    peace and prosperity.\n
-    The 17 SDGs are integrated—they recognize that action in one area will
-    affect outcomes in others, and that development must balance social,
-    economic and environmental sustainability.\n
-    The 17 sustainable development goals (SDGs) to transform our world are:
-    GOAL 1: No Poverty
-    GOAL 2: Zero Hunger
-    GOAL 3: Good Health and Well-being
-    GOAL 4: Quality Education
-    GOAL 5: Gender Equality
-    GOAL 6: Clean Water and Sanitation
-    GOAL 7: Affordable and Clean Energy
-    GOAL 8: Decent Work and Economic Growth
-    GOAL 9: Industry, Innovation and Infrastructure
-    GOAL 10: Reduced Inequality
-    GOAL 11: Sustainable Cities and Communities
-    GOAL 12: Responsible Consumption and Production
-    GOAL 13: Climate Action
-    GOAL 14: Life Below Water
-    GOAL 15: Life on Land
-    GOAL 16: Peace and Justice Strong Institutions
-    GOAL 17: Partnerships to achieve the Goal
-    ''')
-    time.sleep(3)
-    will_play()
-
-
 def main_menu():
     """
     Display menu and redirect user to
@@ -260,7 +228,10 @@ def main_menu():
             display_score_board()
             break
         elif menu_choice == 3:
+            os.system('clear')
             sdg_note()
+            time.sleep(3)
+            will_play()
             break
         elif menu_choice == 4:
             print('Thank for stopping by.\nGoodbye!')

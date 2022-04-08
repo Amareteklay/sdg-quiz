@@ -1,4 +1,4 @@
-def questionBank():
+def question_bank():
     """
     A function that stores and returns
     a list of dictionaries of questions
@@ -94,3 +94,35 @@ followed by _______.''',
          'answer': 'A'}
     ]
     return questions
+
+
+def sdg_note():
+    """ A function to store and print a short note
+    on and a list of the 17 SDGs.
+    """
+    print(''' The Sustainable Development Goals (SDGs), also known as the\
+Global Goals, were adopted by the United Nations in 2015 as a\
+universal call to action to end poverty, protect the planet,\
+ and ensure that by 2030 all people enjoy peace and prosperity.\n The 17 SDGs are\
+ integrated—they recognize that action in one area will\
+affect outcomes in others, and that development must balance social,\
+economic and environmental sustainability.\n
+    The 17 sustainable development goals (SDGs) to transform our world are:
+    GOAL 1: No Poverty
+    GOAL 2: Zero Hunger
+    GOAL 3: Good Health and Well-being
+    GOAL 4: Quality Education
+    GOAL 5: Gender Equality
+    GOAL 6: Clean Water and Sanitation
+    GOAL 7: Affordable and Clean Energy
+    GOAL 8: Decent Work and Economic Growth
+    GOAL 9: Industry, Innovation and Infrastructure
+    GOAL 10: Reduced Inequality
+    GOAL 11: Sustainable Cities and Communities
+    GOAL 12: Responsible Consumption and Production
+    GOAL 13: Climate Action
+    GOAL 14: Life Below Water
+    GOAL 15: Life on Land
+    GOAL 16: Peace and Justice Strong Institutions
+    GOAL 17: Partnerships to achieve the Goal
+    ''')
