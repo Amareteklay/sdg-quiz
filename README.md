@@ -154,11 +154,13 @@ Some of the learning outcomes in this project are generic in the sense that ther
 
 I used the following fix: the program checks if there are any, less than 5 or greater than or equal to 5 records of scores. In the first case, the program tells the user that there are no scores to show. If there are less than number of users, the program says only x number of values found. This makes sense because it was trying to fetch top 5 scores, so the user can understand what the program tried to do and what it actually found. The last case is the one I had by default, print a table of the top 5 scores.
 
-![](./assets/images/no_scores.jpg)
-![](./assets/images/two_scores.jpg)
-![](./assets/images/five_scores.jpg)
+![If there are no scores.](./assets/images/no_scores.jpg)
 
-- There are no unresolved bugs in the code, but there is one semantic issue which did not fix. When the program gives feedback about scores fewer than 5, it says *Only x values found*. When x is 1, it should have been 1 *value* instead of *values*. 
+![If there are few scores.](./assets/images/two_scores.jpg)
+
+![If there are five or more scores.](./assets/images/five_scores.jpg)
+
+- There are no unresolved bugs in the code, but there is one semantic issue which did not fix. When the program gives feedback about scores fewer than 5, it tells the user that *Only x values* were found. When x is 1, however, it should have said 1 *value* instead of *1 values*. 
 # Deployment
 ### How to deploy on heroku
   - Sign in to Heroku (Sign up if for the first time)
