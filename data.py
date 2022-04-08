@@ -5,6 +5,7 @@ Data are questions and notes and SDGs.
 """
 # Import textwrap format notes printed on screen
 import textwrap as tr
+import time
 
 
 def question_bank():
@@ -47,9 +48,9 @@ def question_bank():
              'D': 'None'},
          'answer': 'D'},
 
-        {'question': '''Goal 17 seeks to Strengthen the means of implementation and revitalize the\
- Global Partnership for Sustainable Development.\
-What are these means of implementation?''',
+        {'question': '''Goal 17 seeks to Strengthen the means of implementation and\n revitalize\
+ the Global Partnership for Sustainable Development.\
+\nWhat are these means of implementation?''',
          'choices': {
              'A': 'Finance',
              'B': 'Technology',
@@ -69,7 +70,7 @@ What are these means of implementation?''',
          'answer': 'A'},
 
         {'question': '''Which SDG aims to Conserve and sustainably use the\
- oceans, seas and marine resources for Sustainable Development?''',
+ oceans, seas and marine\n resources for Sustainable Development?''',
          'choices': {
              'A': 'Life of land',
              'B': 'Life below water',
@@ -90,7 +91,7 @@ What are these means of implementation?''',
          'answer': 'B'},
 
         {'question': 'Which goal aims to achieve sustainable management and\
- efficient use of natural resources by 2030?',
+ efficient use of natural\n resources by 2030?',
          'choices': {
              'A': 'Climate actions',
              'B': 'Clean water and sanitation',
@@ -100,8 +101,8 @@ What are these means of implementation?''',
         # Question adapted from\
         # https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden.
         {'question': 'Based on the 2022 Climate Change Performance Index,\
- ______ was ranked as the country with the highest achievement in\
-  climate protection, followed by _______.',
+ ______ was ranked\n as the country with the highest achievement in\
+  climate protection,\n followed by _______.',
          'choices': {
              'A': 'Denmark, Sweden',
              'B': 'Sweden, Denmark',
@@ -125,10 +126,10 @@ affect outcomes in others, and that development must balance social,\
 economic and environmental sustainability."
 
     # Wrap text and print to fit the width constraint
-    print('\n')
     for note_line in tr.wrap(notes, width=78):
         print(note_line)
 
+    time.sleep(3)
     # Print list of goals
     print('\n')
     print('''The 17 sustainable development goals (SDGs) to transform our world are:

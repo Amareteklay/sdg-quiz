@@ -158,7 +158,6 @@ def welcome_board():
     Display a Welcome message to the user
     """
     sdg_art = text2art("SDG-Quiz")
-    print('\n')
     print(colored('::::::::::::::::::::: WELCOME :::::::::::::::::::::',
                   'yellow'))
     print(colored('''                        TO             ''', 'yellow'))
@@ -234,7 +233,8 @@ def main_menu():
         try:
             menu_choice = int(menu_choice)
         except ValueError:
-            print('Invalid input! Please choose one of the alternatives')
+            print(colored('Invalid input! Please choose one of the\
+                          alternatives', 'red'))
             continue
         if menu_choice == 1:
             display_instructions()
@@ -245,7 +245,7 @@ def main_menu():
         elif menu_choice == 3:
             os.system('clear')
             sdg_note()  # function imported from data
-            time.sleep(3)
+            time.sleep(4)
             will_play()
             break
         elif menu_choice == 4:
@@ -255,7 +255,7 @@ def main_menu():
             exit()
             break
         else:
-            print('Choice out of range.')
+            print(colored('Choice out of range.', 'red'))
 
 
 def add_new_data(user):
