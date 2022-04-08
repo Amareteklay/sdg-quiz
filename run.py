@@ -6,7 +6,7 @@ from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
 from termcolor import colored
-from art import *
+from art import text2art
 
 # Import questions and notes from data
 from data import question_bank, sdg_note
@@ -154,11 +154,11 @@ def welcome_board():
     """
     sdg_art = text2art("SDG-Quiz")
     print('\n')
-    print(colored(f'::::::::::::::::::::: WELCOME :::::::::::::::::::::',
+    print(colored('::::::::::::::::::::: WELCOME :::::::::::::::::::::',
                   'yellow'))
-    print(colored(f'''                        TO             ''', 'yellow'))
+    print(colored('''                        TO             ''', 'yellow'))
     print(colored(f'{sdg_art}', 'green'))
-    print(colored(f':::::::::::::::::::::::::::::::::::::::::::::::::::',
+    print(colored(':::::::::::::::::::::::::::::::::::::::::::::::::::',
                   'yellow'))
     time.sleep(2)
 
@@ -328,5 +328,6 @@ def main():
     user = User()
     play(user)
     end_quiz(user)
+
 
 main()

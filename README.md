@@ -159,15 +159,14 @@ Some of the learning outcomes in this project are generic in the sense that ther
 - GitHub for storing code and for version control.
 
 # Debugging
-- I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by including \ in the code so that python doesn't add unnecessary space when it prints the questions. 
+- I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by including backslash (\) in the code so that python doesn't add unnecessary space when it prints the questions. 
 - I had only limited validation check in the main menu until I used a while loop and the try, except statements which helped me separate errors related to non-numeric input and those that are out of the range of choices. 
 - The average score reported at the end of the quiz would sometimes have many decimal points depending on the values used to calculate it. In the beginning I did not notice this, but in one of the tests I saw that the floating number looked too long. I fixed this by rounding the value obtained from the mean function.
--  
 # Deployment
 ### How to deploy on heroku
   - Sign in to Heroku (Sign up if for the first time)
   - Click on **New** on the right hand side and select **Create new app**
-  - Enter App name such as *sdg_quizapp* in my case, and choose region (mine is *Europe*) then click on **Create app**
+  - Enter App name such as *sdg-quizapp* in my case, and choose region (mine is *Europe*) then click on **Create app**
   - Select the app you just created from the dashboard and go to **Settings**
   - Scroll down to **Config Vars** and click the **Reveal Config Vars** button. In the Config Vars, create CREDS key and copy the content of CREDS.json file and paste it as a value for this key. Then enter PORT as a key and give it a value of 8000.
   - Scroll down and find the **Buildpacks** section. Click on the **Add buildpack** button. Select python and node.js as buildpacks in that order.
@@ -177,7 +176,7 @@ Some of the learning outcomes in this project are generic in the sense that ther
     - Go to Account settings
     - Select the Applications tab 
     - Authorize GitHub in the **Third-party Services** section.
-  - Type the name of your repository (mine is *sdg.quiz*) and hit Enter. Select the one you are looking for and click Connect. 
+  - Type the name of your repository (mine is *sdg-quiz*) and hit Enter. Select the one you are looking for and click Connect. 
   - You can choose to deploy manually. I have enabled automatic deploys so that the application captures the updates I push to my GitHub repository. 
   - Wait for the system to build your app. My application is [live here](https://sdg-quizapp.herokuapp.com/).
 ### Cloning
