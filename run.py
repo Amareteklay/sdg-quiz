@@ -1,3 +1,7 @@
+"""
+This module consists of the classes and functions of
+the quiz application.
+"""
 # Import required external libraries
 import os
 import time
@@ -8,7 +12,7 @@ from google.oauth2.service_account import Credentials
 from termcolor import colored
 from art import text2art
 
-# Import questions and notes from data
+# Import questions and notes from data module
 from data import question_bank, sdg_note
 
 

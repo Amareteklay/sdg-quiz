@@ -1,3 +1,8 @@
+"""
+This module stores and provides the data required for
+the quiz application.
+Data are questions and notes and SDGs.
+"""
 # Import textwrap format notes printed on screen
 import textwrap as tr
 
