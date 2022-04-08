@@ -193,7 +193,7 @@ def will_play():
     Ask user if they want to play or quit
     """
     play_quiz = input('''Press P and hit Enter to take the quiz.
-    \nPress Q and hit Enter to exit.\n''')
+Press Q and hit Enter to exit.\n''')
     if play_quiz.lower() == 'p':
         os.system('clear')
         display_instructions()
@@ -211,7 +211,13 @@ def display_score_board():
     """
     print('Fetching the highest 5 scores...\n')
     data = users.get_all_values()
-    print(tabulate(data[0:5], headers='firstrow', tablefmt='fancy_grid'))
+    if len(data[1:6]) == 0:
+        print('Opps, there are no scores to show.\n')
+    elif len(data[1:6]) < 5:
+        print(f'Only {len(data[1:6])} values found.')
+        print(tabulate(data[0:6], headers='firstrow', tablefmt='fancy_grid'))
+    else:
+        print(tabulate(data[0:6], headers='firstrow', tablefmt='fancy_grid'))
     time.sleep(3)
     will_play()
 

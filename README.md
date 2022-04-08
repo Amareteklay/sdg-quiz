@@ -83,7 +83,7 @@ One of the user stories is that users want to read about SDGs to refresh their m
 ## 5. Quit the app
 As a part of the main menu, the user has an option to exit the application. Once the user provides a valid input nad if the choice they make is to quit and exit the application, the program thanks the user for stopping by and says 'Goodbye!'
 
-### Features not implemented
+## Features not implemented
 I have mentioned earlier that the program records the answers a user gives to each question. There are several potential use cases where additional features can be added to make use of this data. 
 
 ![Answers recorded in Google sheet](./assets/images/answers_google_sheet.jpg)
@@ -148,7 +148,17 @@ Some of the learning outcomes in this project are generic in the sense that ther
 - I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by using a backslash to indicate a line break in the code to avoid long lines, but to tell python to ignore the line breaks in the printed text. 
 - I had only limited validation check in the main menu until I used a while loop and the try, except statements which helped me separate errors related to non-numeric input and those that are out of the range of choices. 
 - The average score reported at the end of the quiz would sometimes have many decimal points depending on the values used to calculate it. In the beginning I did not notice this, but in one of the tests I saw that the floating number looked too long. I fixed this by rounding the value obtained from the mean function.
-- There are no unresolved bugs in the code.
+- One important question that did not occur to me until the last minute was what happens if the first user tries to see the scores for the first time. There are no scores to show. Initially, the program would display an empty table like this.
+
+![Empty table](./assets/images/score_bug.jpg)
+
+I used the following fix: the program checks if there are any, less than 5 or greater than or equal to 5 records of scores. In the first case, the program tells the user that there are no scores to show. If there are less than number of users, the program says only x number of values found. This makes sense because it was trying to fetch top 5 scores, so the user can understand what the program tried to do and what it actually found. The last case is the one I had by default, print a table of the top 5 scores.
+
+![](./assets/images/no_scores.jpg)
+![](./assets/images/two_scores.jpg)
+![](./assets/images/five_scores.jpg)
+
+- There are no unresolved bugs in the code, but there is one semantic issue which did not fix. When the program gives feedback about scores fewer than 5, it says *Only x values found*. When x is 1, it should have been 1 *value* instead of *values*. 
 # Deployment
 ### How to deploy on heroku
   - Sign in to Heroku (Sign up if for the first time)

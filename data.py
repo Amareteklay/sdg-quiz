@@ -50,7 +50,7 @@ def question_bank():
 
         {'question': '''Goal 17 seeks to Strengthen the means of implementation and\n revitalize\
  the Global Partnership for Sustainable Development.\
-\nWhat are these means of implementation?''',
+\n What are these means of implementation?''',
          'choices': {
              'A': 'Finance',
              'B': 'Technology',
@@ -91,7 +91,7 @@ def question_bank():
          'answer': 'B'},
 
         {'question': 'Which goal aims to achieve sustainable management and\
- efficient use of natural\n resources by 2030?',
+ efficient use of\n natural resources by 2030?',
          'choices': {
              'A': 'Climate actions',
              'B': 'Clean water and sanitation',
