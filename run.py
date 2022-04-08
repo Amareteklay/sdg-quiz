@@ -143,7 +143,7 @@ class User:
         else:
             print(colored('That was incorrect.', 'red'))
             print(f"The correct answer is:\
-     {all_questions[this_question]['answer']}.")
+ {all_questions[this_question]['answer']}.")
         print('\n')
         time.sleep(1)
 
@@ -305,7 +305,7 @@ def end_quiz(user):
     time.sleep(3)
     add_new_data(user)
     print(f'''You have correctly answered {user.score}\
-questions out of {len(all_questions)}.''')
+ questions out of {len(all_questions)}.''')
     if user.score >= 7:
         print(colored(f'Excellent, {user.name}!', 'green'))
     elif user.score >= 5:

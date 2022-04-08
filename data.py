@@ -18,7 +18,7 @@ def question_bank():
          'answer': 'B'},
 
         {'question': 'When was the 2030 Agenda for Sustainable\
-             Development adopted?',
+ Development adopted?',
          'choices': {
              'A': '2010',
              'B': '2015',
@@ -43,8 +43,8 @@ def question_bank():
          'answer': 'D'},
 
         {'question': '''Goal 17 seeks to Strengthen the means of implementation and revitalize the\
-             Global Partnership for Sustainable Development.\
-            What are these means of implementation?''',
+ Global Partnership for Sustainable Development.\
+What are these means of implementation?''',
          'choices': {
              'A': 'Finance',
              'B': 'Technology',
@@ -55,7 +55,7 @@ def question_bank():
         # 2 questions copied/adapted from https://quizizz.com/admin/quiz/\
         # 5c6c4413206101001a84dce7/sustainable-development-goals
         {'question': 'Which is not an obstacle to achieving the\
-             Sustainable Development Goals?',
+ Sustainable Development Goals?',
          'choices': {
              'A': 'Capital cities',
              'B': 'Differences in income',
@@ -64,7 +64,7 @@ def question_bank():
          'answer': 'A'},
 
         {'question': '''Which SDG aims to Conserve and sustainably use the\
-             oceans, seas and marine resources for Sustainable Development?''',
+ oceans, seas and marine resources for Sustainable Development?''',
          'choices': {
              'A': 'Life of land',
              'B': 'Life below water',
@@ -75,17 +75,17 @@ def question_bank():
         {'question': 'Which statement is correct?',
          'choices': {
              'A': 'Sustainable development is the same as economic\
-                  development',
+  development',
              'B': 'The 2030 Agenda for Sustainable Development has 17 goals\
-                  and 169 targets',
+  and 169 targets',
              'C': 'Each of the 17 goals in the SDGs has the same number of\
-                  targets',
+  targets',
              'D': 'Developed countries do not have to include SDGs in their\
-                  national policies because they are already developed'},
+  national policies because they are already developed'},
          'answer': 'B'},
 
         {'question': 'Which goal aims to achieve sustainable management and\
-             efficient use of natural resources by 2030?',
+ efficient use of natural resources by 2030?',
          'choices': {
              'A': 'Climate actions',
              'B': 'Clean water and sanitation',
@@ -95,8 +95,8 @@ def question_bank():
         # Question adapted from\
         # https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden.
         {'question': 'Based on the 2022 Climate Change Performance Index,\
-             ______ was ranked as the country with the highest achievement in\
-                  climate protection, followed by _______.',
+ ______ was ranked as the country with the highest achievement in\
+  climate protection, followed by _______.',
          'choices': {
              'A': 'Denmark, Sweden',
              'B': 'Sweden, Denmark',
@@ -120,10 +120,12 @@ affect outcomes in others, and that development must balance social,\
 economic and environmental sustainability."
 
     # Wrap text and print to fit the width constraint
-    for note_line in tr.wrap(notes, width=80):
+    print('\n')
+    for note_line in tr.wrap(notes, width=78):
         print(note_line)
 
     # Print list of goals
+    print('\n')
     print('''The 17 sustainable development goals (SDGs) to transform our world are:
     GOAL 1: No Poverty
     GOAL 2: Zero Hunger
