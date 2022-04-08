@@ -1,3 +1,4 @@
+# Import required external libraries
 import os
 import time
 import statistics as st
@@ -6,32 +7,35 @@ import gspread
 from google.oauth2.service_account import Credentials
 from termcolor import colored
 from art import *
+
+# Import questions and notes from data
 from data import question_bank, sdg_note
 
 
+# Set scope and cred variables as constants
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
 ]
-
-
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+
+# Open the sdg_quiz google sheet
 SHEET = GSPREAD_CLIENT.open('sdg_quiz')
 
+# Open and store worksheets 
 users = SHEET.worksheet('users')
 answers = SHEET.worksheet('answers')
 
 # Create a list of question dictionaries.
 all_questions = question_bank()
-score = 0
 
 
 class Question:
     """
-    Blueprint of questions.
+    Defines the question class.
     Takes a list of dictionaries and displays questions and choices.
     """
     def __init__(self, question_index, dict_list):
@@ -68,7 +72,7 @@ class Question:
 
 class User:
     """"
-    Defines users
+    Defines user the class
     """
     def __init__(self):
         """
@@ -181,6 +185,9 @@ def display_instructions():
 
 
 def will_play():
+    """
+    Ask user if they want to play or quit
+    """
     play_quiz = input('''Press P and hit Enter to take the quiz.
     \nPress Q and hit Enter to exit.\n''')
     if play_quiz.lower() == 'p':
@@ -195,6 +202,9 @@ def will_play():
 
 
 def display_score_board():
+    """
+    Tabulate and display the names and top 5 scores
+    """
     print('Fetching the highest 5 scores...\n')
     data = users.get_all_values()
     print(tabulate(data[0:5], headers='firstrow', tablefmt='fancy_grid'))
@@ -229,7 +239,7 @@ def main_menu():
             break
         elif menu_choice == 3:
             os.system('clear')
-            sdg_note()
+            sdg_note() # function imported from data
             time.sleep(3)
             will_play()
             break
@@ -269,9 +279,13 @@ def rank_score():
 
 
 def play(user):
+    """
+    Iterate through all questions and alternate between
+    asking a question, validation and evaluation of answers.
+    """
     user.answers = []
     user.score = 0
-    for i in range(10):
+    for i in range(len(all_questions)):
         user.show_question(i)
         user.validate_answer()
         user.answers.append(user.given_answer)
@@ -281,7 +295,8 @@ def play(user):
 
 def end_quiz(user):
     """
-    Show own and others' score
+    Tell user quiz is over, show scores
+    Display statistics
     """
     os.system('clear')
     qover_art = text2art("QUIZ OVER")
