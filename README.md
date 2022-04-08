@@ -86,7 +86,7 @@ As a part of the main menu, the user has an option to exit the application. Once
 ### Features not implemented
 I have mentioned earlier that the program records the answers a user gives to each question. There are several potential use cases where additional features can be added to make use of this data. 
 
-![Answers recorded in Google sheet](./assets/images/answers_google_sheet.jpg).
+![Answers recorded in Google sheet](./assets/images/answers_google_sheet.jpg)
 
 One that is particularly compelling in the context of SDGs is for research that tries to link the patterns in the answers that users provide and other characteristics that can be collected by including survey questions. However, this is beyond the scope of this project, and hence not implemented.
 
@@ -108,43 +108,29 @@ I have described the process of design and implementation. Now it is time to tes
 - **User story:** be able to choose what to do and be given appropriate feedback
   - *Features:* The user is given different choices at different stages of the quiz. For example, the user is asked to press P to play or Q to quit once they read the notes or see the scores. This user story is one of the reasons for the option to exit the quiz from the main menu. The user can also choose when to proceed after reading the general instructions.  
 ## Testing Learning outcomes
-Some of the learning outcomes in this project are generic in the sense that there is no specific feature or set of features that indicate that they are met. The performance of the application as well as the entire development process 
-- **LO1: Implement algorithm**
-  - I have tested the python code manually for PEP8 compliance and there are no issues.
+Some of the learning outcomes in this project are generic in the sense that there is no specific feature or set of features that indicate that they are met. I have implemented and tested the following important features which are required in the project. 
+  - I have tested the python code manually for PEP8 compliance, and there are no unresolved issues.
 
     ![PEP8 Check](./assets/images/pep8_check2.jpg)
 
   - The functionalities for the project work as intended. 
-  - The program follows conventions and standards to make sure that the code is readable. Apropriate and helpful comments, indentations, and meaningful and self-explanatory names of classes, functions and variables have been used. 
-- **LO2: Solve problem**
-  - The code handles empty or invalid input data. When the program prompts the user to press P or Q, for example, it only accepts P or Q (case insensitive though). User name cannot be empty, or less than 2 characters or above 20 characters and it should have only alphabets. When the user provides any input that violates these requirements, a custom message is shown to help the user provide a valid name. 
-  - External libraries and modules are imported at the beginning of the program and indicated by way of comments. The data file has inline comments to show questions that were taken or adapted from other sources (given due credit below.)
+  - The program follows conventions and standards to make sure that the code is readable. Appropriate and helpful comments, indentations, and meaningful and self-explanatory names of classes, functions and variables have been used. 
+  - The code handles empty or invalid input data and gives helpful feedback to the user. When the program prompts the user to press P or Q, for example, it only accepts P or Q (case insensitive though). User name cannot be empty, or less than 2 characters or above 20 characters and it should have only alphabets. When the user provides any input that violates these requirements, a custom message is shown to help the user provide a valid name. 
+  - External libraries and modules are imported at the beginning of the program and indicated by way of comments. The data file has inline comments to show questions that were taken or adapted from other sources (mentioned in the credit section below.)
   - I have used functions that perform specific tasks such as getting name, validating input, evaluating results, displaying instructions and so on.
-- **LO3: Standard programming constructs**
   - This application implements different standard programming contructs. To benefit from the object-oriented approach, users and questions have classes.
   - As reflected in the [main menu](./assets/images/main_menu.jpg), the program runs different blocks of code and/or different functions and features depending on what the user chooses. When the quiz starts, the program iterates through all the questions. Each question is a dictionary with keys for the question text, choices and the correct answer. A list of question dictionaries is used to make it easy for iteration.
   - When the user is expected to provide input, different validation checks are made. If a user input for their name consists of numbers, for example, the program tells them that they should use alphabets. If the name is too short or too long, the feedback is specific enough to inform the user what exactly to pay attention to (length of the input), because simply telling them that the name is not valid would not be very helpful in how they correct it.
-- **LO4: Explain** 
-  - This learning outcome is about this particular document. I hope it speaks for itself.
-
-- **LO5: Debugging**
   - I have implemented manual testing for code validation. I have tested both the main program and the data file (run and data python files) using pep8 online checker.
   - Here are the issues I found when I used the pep8 checker and later fixed them.
     - [Issues in PEP8 test for run.py file](./assets/images/pep8_check1.jpg)
     - [Issues in run.py fixed](./assets/images/pep8_check2.jpg)
     - [Issues in PEP8 test for data file](./assets/images/pep8_check_data1.jpg)
     - [Data file debugged](./assets/images/pep8_check_data2.jpg)
-
-- **LO6: CLI using libraries**
   - I have used different python libraries and modules to implement the required functionality. To mention some, I have used statistics to generate basic descriptive statistics, art to beautify the logo and quiz over message, tabulate to print data in a table on the command line interface.
-
-- **LO7: Data model**
   - Starting with the user stories, I have used a working data model that meets the expected results.
   - This application has the capability to access google sheets, fetch and sort data, do descriptive statistics and present the required information to the user. 
-
-- **LO8: Version control**
   - I used GitHub to store my code as well as, or more importantly, for version control.
-- **LO9: Deployment** 
   - I have deployed the SDG QuizApp on [Heroku in this link](https://sdg-quizapp.herokuapp.com/). More on the deployment procedures later.
   - I have made sure that I removed any commented out code in the deployed application.
 
@@ -162,6 +148,7 @@ Some of the learning outcomes in this project are generic in the sense that ther
 - I used the [pep8 online checker](http://pep8online.com/) to identify issues in the code. The question in the data file were particularly difficult as there was a trade off between indentations in the code and line wrapping in the quiz screen. I fixed this by using a backslash to indicate a line break in the code to avoid long lines, but to tell python to ignore the line breaks in the printed text. 
 - I had only limited validation check in the main menu until I used a while loop and the try, except statements which helped me separate errors related to non-numeric input and those that are out of the range of choices. 
 - The average score reported at the end of the quiz would sometimes have many decimal points depending on the values used to calculate it. In the beginning I did not notice this, but in one of the tests I saw that the floating number looked too long. I fixed this by rounding the value obtained from the mean function.
+- There are no unresolved bugs in the code.
 # Deployment
 ### How to deploy on heroku
   - Sign in to Heroku (Sign up if for the first time)
@@ -192,8 +179,11 @@ To clone a copy of the code in the repository to your local machine,
 ## Content
 - Description of SDGs was copied from [this page](https://www.undp.org/sustainable-development-goals?utm_source=EN&utm_medium=GSR&utm_content=US_UNDP_PaidSearch_Brand_English&utm_campaign=CENTRAL&c_src=CENTRAL&c_src2=GSR&gclid=Cj0KCQjw3IqSBhCoARIsAMBkTb3nuP_n4d0SmgyXs19VU0vFHfZphewUCOk3J0hHHeh8Gv17Xt6I1g4aAk-fEALw_wcB).
 - The list of SDGs in the SDG note screen were copied from [this page](https://www.un.org/development/desa/disabilities/envision2030.html).
+- The last question was inspired by and adapted from [this page in statistica](https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden).
+- Questions 6 and 7 were copied from [this page in quizizz](https://quizizz.com/admin/quiz/5c6c4413206101001a84dce7/sustainable-development-goals).
 ## Code
-- I used the template provided by the CI to develop this application. Hosting it on a virtual CLI would have been difficult if this template were not available.
+- I used [the template](https://github.com/Code-Institute-Org/python-essentials-template) provided by the [Code Institute](https://codeinstitute.net/) to develop this application. Hosting it on a virtual CLI would have been difficult if this template were not available.
+- I followed the lessons in the 'Love Sandwiches' walk through project to get the APIs for google drive and google spreadsheet. I adapted the code in the lessons to connect the spreadsheet to the application.
 
 # Acknowledgements
 I am always grateful to Moosa, my mentor for his helpful suggestions and encouraging words. I would like to thank the CI developers who created this well-designed and well-presented python essentials course. 

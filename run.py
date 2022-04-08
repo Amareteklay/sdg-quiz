@@ -13,6 +13,7 @@ from data import question_bank, sdg_note
 
 
 # Set scope and cred variables as constants
+# The code is adapted from the 'Love Sandwiches' project.
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
