@@ -25,7 +25,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 # Open the sdg_quiz google sheet
 SHEET = GSPREAD_CLIENT.open('sdg_quiz')
 
-# Open and store worksheets 
+# Open and store worksheets
 users = SHEET.worksheet('users')
 answers = SHEET.worksheet('answers')
 
@@ -239,7 +239,7 @@ def main_menu():
             break
         elif menu_choice == 3:
             os.system('clear')
-            sdg_note() # function imported from data
+            sdg_note()  # function imported from data
             time.sleep(3)
             will_play()
             break

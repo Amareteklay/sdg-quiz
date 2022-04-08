@@ -13,7 +13,8 @@ def question_bank():
              'D': 'Sustainable Development Grants'},
          'answer': 'B'},
 
-        {'question': 'When was the 2030 Agenda for Sustainable Development adopted?',
+        {'question': 'When was the 2030 Agenda for Sustainable\
+             Development adopted?',
          'choices': {
              'A': '2010',
              'B': '2015',
@@ -21,7 +22,7 @@ def question_bank():
              'D': '2020'},
          'answer': 'B'},
 
-         {'question': 'How many SDGS are there?',
+        {'question': 'How many SDGS are there?',
          'choices': {
              'A': 15,
              'B': 27,
@@ -37,9 +38,9 @@ def question_bank():
              'D': 'None'},
          'answer': 'D'},
 
-        {'question': '''Goal 17 seeks to Strengthen the means of implementation and revitalize the 
-        Global Partnership for Sustainable Development. 
-What are these means of implementation?''',
+        {'question': '''Goal 17 seeks to Strengthen the means of implementation and revitalize the\
+             Global Partnership for Sustainable Development.\
+            What are these means of implementation?''',
          'choices': {
              'A': 'Finance',
              'B': 'Technology',
@@ -47,8 +48,10 @@ What are these means of implementation?''',
              'D': 'All'},
          'answer': 'D'},
 
-        # 2 questions copied/adapted from https://quizizz.com/admin/quiz/5c6c4413206101001a84dce7/sustainable-development-goals
-        {'question': 'Which is not an obstacle to achieving the Sustainable Development Goals?',
+        # 2 questions copied/adapted from https://quizizz.com/admin/quiz/\
+        # 5c6c4413206101001a84dce7/sustainable-development-goals
+        {'question': 'Which is not an obstacle to achieving the\
+             Sustainable Development Goals?',
          'choices': {
              'A': 'Capital cities',
              'B': 'Differences in income',
@@ -56,8 +59,8 @@ What are these means of implementation?''',
              'D': 'Using more than we produce or grow'},
          'answer': 'A'},
 
-        {'question': '''Which SDG aims to Conserve and sustainably use the oceans, seas and marine
-         resources for Sustainable Development?''',
+        {'question': '''Which SDG aims to Conserve and sustainably use the\
+             oceans, seas and marine resources for Sustainable Development?''',
          'choices': {
              'A': 'Life of land',
              'B': 'Life below water',
@@ -67,15 +70,18 @@ What are these means of implementation?''',
 
         {'question': 'Which statement is correct?',
          'choices': {
-             'A': 'Sustainable development is the same as economic development',
-             'B': 'The 2030 Agenda for Sustainable Development has 17 goals and 169 targets',
-             'C': 'Each of the 17 goals in the SDGs has the same number of targets',
-             'D': '''Developed countries do not have to include SDGs in their national policies 
-             because they are already developed'''},
+             'A': 'Sustainable development is the same as economic\
+                  development',
+             'B': 'The 2030 Agenda for Sustainable Development has 17 goals\
+                  and 169 targets',
+             'C': 'Each of the 17 goals in the SDGs has the same number of\
+                  targets',
+             'D': 'Developed countries do not have to include SDGs in their\
+                  national policies because they are already developed'},
          'answer': 'B'},
 
-        {'question': '''Which goal aims to achieve sustainable management and efficient
-         use of natural resources by 2030?''',
+        {'question': 'Which goal aims to achieve sustainable management and\
+             efficient use of natural resources by 2030?',
          'choices': {
              'A': 'Climate actions',
              'B': 'Clean water and sanitation',
@@ -83,9 +89,9 @@ What are these means of implementation?''',
              'D': 'Life on land'},
          'answer': 'C'},
         # https://www.statista.com/statistics/266138/climate-change-the-countries-with-the-highest-achievements/#:~:text=Based%20on%20the%202022%20Climate,climate%20protection%2C%20followed%20by%20Sweden.
-        {'question': '''Based on the 2022 Climate Change Performance Index, ______ was 
-ranked as the country with the highest achievement in climate protection, 
-followed by _______.''',
+        {'question': 'Based on the 2022 Climate Change Performance Index,\
+             ______ was ranked as the country with the highest achievement in\
+                  climate protection, followed by _______.',
          'choices': {
              'A': 'Denmark, Sweden',
              'B': 'Sweden, Denmark',
@@ -100,11 +106,11 @@ def sdg_note():
     """ A function to store and print a short note
     on and a list of the 17 SDGs.
     """
-    print(''' The Sustainable Development Goals (SDGs), also known as the\
+    print('''The Sustainable Development Goals (SDGs), also known as the\
 Global Goals, were adopted by the United Nations in 2015 as a\
 universal call to action to end poverty, protect the planet,\
- and ensure that by 2030 all people enjoy peace and prosperity.\n The 17 SDGs are\
- integrated—they recognize that action in one area will\
+ and ensure that by 2030 all people enjoy peace and prosperity.\n\
+     The 17 SDGs are integrated—they recognize that action in one area will\
 affect outcomes in others, and that development must balance social,\
 economic and environmental sustainability.\n
     The 17 sustainable development goals (SDGs) to transform our world are:
